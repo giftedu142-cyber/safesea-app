@@ -107,6 +107,11 @@
         <div id="catchList" style="margin-top:8px"></div>
         <p class="disclaimer">🚫 표시는 <b>수산자원관리법 시행령(2026.1.1 기준)</b>상 방류 대상 크기 어종만 참고로 안내해요 (감성돔·참돔·농어·볼락·대구·도다리·쥐노래미). 다른 어종의 법적 최소 체장은 별도로 확인하세요.</p>
       </article>
+      <article class="recommend" style="margin-top:12px">
+        <h3 style="margin:0 0 4px">낚시 초보자 튜토리얼</h3>
+        <p style="font-size:11px;color:var(--muted);margin:0 0 12px">미끼부터 포획까지, 5단계로 배워요</p>
+        <button onclick="openTutorial()" style="width:100%;border:0;background:var(--deep);color:#fff;padding:13px;border-radius:12px;font-weight:800;font:inherit;cursor:pointer">🎣 튜토리얼 시작하기</button>
+      </article>
     </section>
   </div>
   <nav class="bottom"><button class="active" data-id="home" onclick="go('home')"><span>⌂</span>홈</button><button data-id="spots" onclick="go('spots')"><span>⌖</span>포인트</button><button data-id="ai" onclick="go('ai')"><span>✦</span>어종 AI</button><button data-id="safety" onclick="go('safety')"><span>♧</span>안전</button><button data-id="my" onclick="go('my')"><span>◯</span>마이</button></nav>
@@ -125,6 +130,14 @@
     <p id="modalDesc">-</p>
     <div class="modal-facts" id="modalFacts"></div>
     <button class="modal-close" onclick="closeReleaseModal()">확인했어요</button>
+  </div></div>
+  <div class="modal-overlay" id="tutorialModal"><div class="modal-box" style="max-width:370px;text-align:left">
+    <div style="display:flex;justify-content:space-between;align-items:center"><span class="badge" id="tutorialStageBadge">STAGE 1 / 5</span><button onclick="closeTutorial()" style="border:0;background:none;font-size:22px;color:var(--muted);cursor:pointer">×</button></div>
+    <div class="modal-icon" id="tutorialIcon" style="text-align:center;margin-top:8px">🪱</div>
+    <h3 id="tutorialTitle" style="color:var(--deep);text-align:center">[장전] 미끼 꽂기</h3>
+    <p id="tutorialTip" style="background:#eafaf6;border-radius:10px;padding:10px;font-size:12px"></p>
+    <div id="tutorialBody" style="font-size:12px;line-height:1.7;margin-top:10px"></div>
+    <button id="tutorialNextBtn" onclick="completeTutorialStage()" class="modal-close">스테이지 성공 →</button>
   </div></div>
   <div class="modal-overlay" id="apiKeyModal"><div class="modal-box">
     <div class="modal-icon">🔑</div>
@@ -770,6 +783,32 @@ function closeReleaseModal(){
 document.getElementById('encCount').textContent = FISH_ENCYCLOPEDIA.length;
 document.getElementById('fishNameList').innerHTML = FISH_ENCYCLOPEDIA.map(f=>`<option value="${f.name}">`).join('');
 updateApiKeyBtnState();
+
+/* ---------- 초보자 낚시 튜토리얼 ---------- */
+const TUTORIAL_STAGES = [
+  {icon:'🪱', title:'[장전] 미끼 꽂기', tip:'💡 NPC 팁: 미끼가 떨어지지 않게 바늘을 꽁꽁 감춰주세요!', body:'<b>ACTION</b> 바늘 끝에 미끼(지렁이·새우)를 깊숙이 끼워 넣습니다.<br><b>CHECK</b> 바늘 끝이 미끼 안에 쏙 숨었나요? 물고기가 바늘을 눈치채지 못하게 하는 게 핵심이에요.'},
+  {icon:'🎯', title:'[캐스팅] 잘 던지기', tip:'💡 NPC 팁: 뒤를 확인하고, 원하는 위치를 향해 조준하세요!', body:'<b>1.</b> 릴 베일을 열어 낚싯줄이 풀리게 합니다.<br><b>2.</b> 검지 손가락으로 줄을 잡아 던지기 직전까지 고정합니다.<br><b>3.</b> 낚싯대를 뒤로 젖혔다 앞으로 휘두르며 손가락을 톡 놓습니다.<br><b>4.</b> 줄이 물에 들어가면 릴 베일을 닫습니다.'},
+  {icon:'👀', title:'[대기] 찌 바라보기', tip:'💡 NPC 팁: 찌가 건들거리는 건 탐색전, 쑥 들어갈 때가 진짜입니다.', body:'<b>ACTION</b> 물 위에 뜬 찌(또는 낚싯대 끝)를 가만히 관찰합니다.<br><b>WARNING</b> 찌가 살짝 톡톡 움직일 때는 손을 대지 말고 기다리세요!'},
+  {icon:'⚡', title:'[입질] 찌가 내려가면 낚아채기 (HIT!)', tip:'💡 NPC 팁: 타이밍이 생명! 신호가 오면 즉시 행동하세요.', body:'<b>TRIGGER</b> 찌가 물속으로 쑥- 하고 완전히 잠기는 순간입니다.<br><b>ACTION</b> 낚싯대 끝을 위로 툭! 가볍게 들어 올려 물고기 입에 바늘을 걸어주세요.'},
+  {icon:'🐟', title:'[포획] 릴 감아 올리기', tip:'💡 NPC 팁: 줄이 팽팽한 상태를 유지하며 천천히 감으세요!', body:'<b>ACTION</b> 릴 손잡이를 일정한 속도로 빙글빙글 돌려 감아 올립니다.<br><b>CLEAR</b> 물고기가 수면 위로 올라오면 낚싯대를 들어 올려 뭍으로 착지시킵니다!'}
+];
+let tutorialStage = 0;
+function openTutorial(){ tutorialStage=0; renderTutorialStage(); document.getElementById('tutorialModal').classList.add('show'); }
+function closeTutorial(){ document.getElementById('tutorialModal').classList.remove('show'); }
+function renderTutorialStage(){
+  const s=TUTORIAL_STAGES[tutorialStage];
+  document.getElementById('tutorialStageBadge').textContent=`STAGE ${tutorialStage+1} / ${TUTORIAL_STAGES.length}`;
+  document.getElementById('tutorialIcon').textContent=s.icon;
+  document.getElementById('tutorialTitle').textContent=s.title;
+  document.getElementById('tutorialTip').textContent=s.tip;
+  document.getElementById('tutorialBody').innerHTML=s.body;
+  const btn=document.getElementById('tutorialNextBtn');
+  btn.textContent=tutorialStage===TUTORIAL_STAGES.length-1?'🏆 튜토리얼 완료':'스테이지 성공 →';
+}
+function completeTutorialStage(){
+  if(tutorialStage<TUTORIAL_STAGES.length-1){ tutorialStage++; renderTutorialStage(); }
+  else { document.getElementById('tutorialTitle').textContent='🏆 TUTORIAL CLEAR!'; document.getElementById('tutorialTip').textContent='축하합니다! 첫 고기를 낚았습니다. 이제 당신도 낚시꾼!'; document.getElementById('tutorialBody').innerHTML='<div style="text-align:center;font-size:40px;margin:10px">🎉</div>'; document.getElementById('tutorialNextBtn').textContent='닫기'; document.getElementById('tutorialNextBtn').onclick=closeTutorial; }
+}
 
 /* ---------- 잡은 물고기 기록 (마이) ---------- */
 let CATCH_LOG = [];
