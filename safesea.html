@@ -10,7 +10,7 @@
   </style>
 </head>
 <body><main class="app">
-  <header class="top"><div class="brand"><i></i>SafeSea</div><div class="top-right"><span id="clockDisplay" style="font-size:12.5px;font-weight:800;color:var(--deep);letter-spacing:-.3px;margin-right:2px">--:--</span><button class="icon-btn" id="apiKeyBtn" title="API 키 설정 (Claude.ai 밖에서 사용 시 필요)">🔑</button><button class="icon-btn" id="refreshBtn" title="위치·날씨 새로고침">🔄</button><div class="avatar" id="avatarInitial" onclick="openNameModal()" title="이름 변경" style="cursor:pointer">-</div></div></header>
+  <header class="top"><div class="brand"><i></i>SafeSea</div><div class="top-right"><span id="clockDisplay" style="font-size:12.5px;font-weight:800;color:var(--deep);letter-spacing:-.3px;margin-right:2px">--:--</span><button class="icon-btn" id="apiKeyBtn" title="Gemini API 키 설정">🔑</button><button class="icon-btn" id="refreshBtn" title="위치·날씨 새로고침">🔄</button><div class="avatar" id="avatarInitial" onclick="openNameModal()" title="이름 변경" style="cursor:pointer">-</div></div></header>
   <div class="alert-card danger" id="nightWarning" style="display:none;margin:0 16px 0;border-radius:0 0 15px 15px"><span class="alert-icon">🔦</span><div><b>야간 주의</b><p>지금은 22시 이후예요. 갯바위·방파제에서는 발 밑을 꼭 조심하세요.</p></div></div>
   <div class="content">
     <section id="home" class="screen active">
@@ -98,14 +98,14 @@
   </div></div>
   <div class="modal-overlay" id="apiKeyModal"><div class="modal-box">
     <div class="modal-icon">🔑</div>
-    <h3 style="color:var(--deep)">Anthropic API 키 설정</h3>
-    <p>이 앱을 Claude.ai 미리보기 밖에서 단독으로 사용하려면 본인의 Anthropic API 키가 필요해요. 키는 <b>이 브라우저 세션에만 메모리로 저장</b>되고, 새로고침하면 다시 입력해야 해요. (기기에 저장되지 않아요)</p>
-    <input type="password" id="apiKeyInput" placeholder="sk-ant-..." style="width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);margin-top:12px;font:inherit;box-sizing:border-box">
+    <h3 style="color:var(--deep)">Gemini API 키 설정</h3>
+    <p>사진 어종 분석에 Google Gemini를 사용해요. 키는 <b>이 브라우저 세션에만 메모리로 저장</b>되고, 새로고침하면 다시 입력해야 해요. (기기에 저장되지 않아요)</p>
+    <input type="password" id="apiKeyInput" placeholder="AIza..." style="width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);margin-top:12px;font:inherit;box-sizing:border-box">
     <div style="display:flex;gap:8px;margin-top:14px">
       <button onclick="saveApiKey()" style="flex:1;border:0;background:var(--teal);color:#fff;padding:13px;border-radius:12px;font-weight:800;font:inherit;cursor:pointer">저장</button>
       <button onclick="closeApiKeyModal()" style="flex:1;border:1px solid var(--line);background:#fff;color:var(--ink);padding:13px;border-radius:12px;font-weight:800;font:inherit;cursor:pointer">취소</button>
     </div>
-    <p style="font-size:10.5px;color:var(--muted);margin-top:12px;text-align:left">키는 <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">console.anthropic.com</a>에서 발급받을 수 있어요. Claude.ai 안에서 미리보기로 열었다면 키 없이도 작동하니 비워두세요.</p>
+    <p style="font-size:10.5px;color:var(--muted);margin-top:12px;text-align:left">키는 <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a>에서 발급받을 수 있어요.</p>
   </div></div>
 </main>
 <script>
@@ -326,16 +326,7 @@ let currentAddress = null;
 let watchId = null;
 let userApiKey = null;
 
-/* ---------- API 키 설정 (Claude.ai 밖에서 단독 사용 시) ---------- */
-function anthropicHeaders(){
-  const h = {'Content-Type':'application/json'};
-  if(userApiKey){
-    h['x-api-key'] = userApiKey;
-    h['anthropic-version'] = '2023-06-01';
-    h['anthropic-dangerous-direct-browser-access'] = 'true';
-  }
-  return h;
-}
+/* ---------- Gemini API 키 설정 ---------- */
 function openApiKeyModal(){
   document.getElementById('apiKeyInput').value = userApiKey || '';
   document.getElementById('apiKeyModal').classList.add('show');
@@ -351,7 +342,7 @@ function updateApiKeyBtnState(){
   const btn = document.getElementById('apiKeyBtn');
   if(!btn) return;
   btn.style.background = userApiKey ? '#e5faf5' : '#f0f7f6';
-  btn.title = userApiKey ? 'API 키 설정됨 (변경하려면 클릭)' : 'API 키 설정 (Claude.ai 밖에서 사용 시 필요)';
+  btn.title = userApiKey ? 'Gemini API 키 설정됨 (변경하려면 클릭)' : 'Gemini API 키 설정';
 }
 document.getElementById('apiKeyBtn').addEventListener('click', openApiKeyModal);
 
@@ -634,19 +625,15 @@ document.getElementById('fileInput').addEventListener('change', async (e)=>{
     try{
       const todayStr = new Date().toLocaleDateString('ko-KR', {timeZone:'Asia/Seoul', year:'numeric', month:'long', day:'numeric'});
       const encyclopediaText = FISH_ENCYCLOPEDIA.map(f=>`- ${f.name} (${f.family}): ${f.feature}${f.regulated ? ' [공식 규제 대상어종]' : ''}`).join('\n');
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
+      if(!userApiKey) throw new Error('Gemini API 키가 설정되지 않았어요.');
+      const res = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + encodeURIComponent(userApiKey), {
         method: 'POST',
-        headers: anthropicHeaders(),
+        headers: {'Content-Type':'application/json'},
         body: JSON.stringify({
-          model: 'claude-sonnet-4-6',
-          max_tokens: 1200,
-          messages: [{
-            role: 'user',
-            content: [
-              { type: 'image', source: { type: 'base64', media_type: mediaType, data: base64 } },
-              { type: 'text', text: `너는 한국 연안 낚시 어종 식별 전문가야. 아래는 SafeSea 앱이 보유한 어류 도감 목록(약 ${FISH_ENCYCLOPEDIA.length}종, 이름/과/식별 특징/공식 규제 대상 여부)이야. 이 도감을 최우선 참고자료로 사용해서 사진 속 어종을 가장 가깝게 일치하는 이름으로 식별해줘. 도감에 없는 종이면 너의 일반 지식으로 식별하되 그 사실을 note에 밝혀줘.\n\n[어류 도감]\n${encyclopediaText}\n\n오늘 날짜는 ${todayStr} (한국 기준)이야. 이 날짜 기준으로 방생(방류) 필요 여부를 판단해줘.\n\n중요 규칙:\n- 식별한 종이 도감에서 "[공식 규제 대상어종]"으로 표시되어 있으면, 국내 수산자원관리법상 실제로 알려진 최소체장·금어기 정보를 최대한 정확히 채워줘.\n- 규제 대상어종이 아니면 min_length_cm과 closed_season은 "해당 없음(비규제 어종)"으로 응답하고, 없는 수치를 지어내지 마.\n- 정확한 수치를 확신할 수 없으면 반드시 "정보 없음"이라고 응답해. 추측한 숫자를 확정적으로 말하지 마.\n\n반드시 아래 JSON 형식으로만, 다른 설명이나 코드블록 없이 응답해:\n{\n"species":"어종 한글명 (식별 불가 시 \\"식별 불가\\")",\n"confidence":"높음/보통/낮음",\n"in_encyclopedia":"도감 목록에 있는 종이면 \\"예\\", 아니면 \\"아니오\\"",\n"regulated_species":"공식 포획금지 체장·금어기 규제 대상 어종이면 \\"예\\", 아니면 \\"아니오\\", 불확실하면 \\"판단불가\\"",\n"min_length_cm":"국내 수산자원관리법 등 통상 알려진 최소 체장(cm) 숫자, 비규제 어종이면 \\"해당 없음(비규제 어종)\\", 규제 대상인데 정확한 수치를 모르면 \\"정보 없음\\"",\n"closed_season":"국내 통상 금어기 기간 텍스트, 비규제 어종이면 \\"해당 없음(비규제 어종)\\", 규제 대상인데 모르면 \\"정보 없음\\"",\n"closed_season_active":"오늘 날짜가 금어기에 해당하면 \\"예\\", 아니면 \\"아니오\\", 판단 불가면 \\"판단불가\\"",\n"protected_species":"국내 보호대상해양생물 등으로 지정되어 포획 자체가 금지된 종이면 \\"예\\", 아니면 \\"아니오\\"",\n"release_required":"금어기이거나 보호종이라 방생(방류)이 필요하다고 판단되면 \\"예\\", 필요 없으면 \\"아니오\\", 사진만으로 체장 판단이 안 되거나 불확실하면 \\"판단불가\\"",\n"release_reason":"방생 필요 여부에 대한 한 문장 근거",\n"note":"어종에 대한 한 문장 참고 설명 (도감에 없는 종이면 이 사실도 명시)"\n}` }
-            ]
-          }]
+          contents: [{parts: [
+            {inline_data: {mime_type: mediaType, data: base64}},
+            {text: `너는 한국 연안 낚시 어종 식별 전문가야. 아래 도감을 최우선 참고자료로 사용해 사진 속 어종을 식별해줘. 오늘 날짜는 ${todayStr} (한국 기준)이야. 반드시 JSON만 응답해.\n[도감]\n${encyclopediaText}\n\n다음 JSON 형식:\n{"species":"어종 한글명","confidence":"높음/보통/낮음","in_encyclopedia":"예/아니오","regulated_species":"예/아니오/판단불가","min_length_cm":"수치 또는 해당 없음(비규제 어종) 또는 정보 없음","closed_season":"기간 또는 해당 없음(비규제 어종) 또는 정보 없음","closed_season_active":"예/아니오/판단불가","protected_species":"예/아니오","release_required":"예/아니오/판단불가","release_reason":"한 문장 근거","note":"한 문장 설명"}`}
+          ]}]
         })
       });
       if(!res.ok){
@@ -655,7 +642,7 @@ document.getElementById('fileInput').addEventListener('change', async (e)=>{
         throw new Error(errMsg);
       }
       const data = await res.json();
-      const text = (data.content || []).map(b=>b.text || '').join('').trim();
+      const text = (data.candidates || []).flatMap(c=>c.content?.parts || []).map(p=>p.text || '').join('').trim();
       const clean = text.replace(/```json|```/g,'').trim();
       let parsed;
       try{ parsed = JSON.parse(clean); }catch(_){ parsed = null; }
@@ -666,7 +653,7 @@ document.getElementById('fileInput').addEventListener('change', async (e)=>{
       }
     }catch(err){
       if(!userApiKey){
-        resultBox.innerHTML = `<div class="ai-result">⚠️ AI 분석에 실패했어요. Claude.ai 미리보기 밖에서 이 앱을 쓰고 계시다면, 오른쪽 위 🔑 버튼을 눌러 본인의 Anthropic API 키를 입력해주세요.</div>`;
+        resultBox.innerHTML = `<div class="ai-result">⚠️ AI 분석에 실패했어요. 오른쪽 위 🔑 버튼을 눌러 Gemini API 키를 입력해주세요.</div>`;
       } else {
         resultBox.innerHTML = `<div class="ai-result">분석 중 오류가 발생했어요: ${(err && err.message) || '네트워크 연결을 확인하고 다시 시도해주세요.'}</div>`;
       }
