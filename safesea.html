@@ -1,786 +1,90 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>SafeSea · 부산 스마트 낚시</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b3b46" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="SafeSea" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <title>SafeSea | ?덉쟾??諛붾떎?싳떆</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
-    :root{--bg:#f4f8f8;--card:#fff;--ink:#102c35;--muted:#78909a;--line:#e3eeee;--teal:#11bfa5;--deep:#0d3440;--orange:#ff9d42;--red:#f26b63}*{box-sizing:border-box}body{margin:0;background:#dcebea;color:var(--ink);font-family:'Gothic A1',sans-serif}.app{max-width:430px;min-height:100vh;margin:auto;background:var(--bg);position:relative;padding-bottom:84px;box-shadow:0 0 40px #7aa29c55}.top{padding:22px 20px 12px;background:var(--card);display:flex;justify-content:space-between;align-items:center}.brand{font-size:21px;font-weight:900;letter-spacing:-1px}.brand i{display:inline-block;width:9px;height:9px;background:var(--teal);border-radius:50%;margin-right:6px}.top-right{display:flex;gap:10px;align-items:center}.icon-btn{border:0;background:#f0f7f6;border-radius:50%;width:36px;height:36px;font-size:17px;cursor:pointer}.avatar{background:var(--deep);color:#fff;border-radius:50%;width:36px;height:36px;display:grid;place-items:center;font-size:12px;font-weight:800}.content{padding:18px 16px}.greet{font-size:14px;color:var(--muted);margin:4px 2px 5px}.title{font-size:27px;font-weight:900;letter-spacing:-1.6px;margin:0 2px 18px}.title em{font-style:normal;color:var(--teal)}.weather{background:var(--deep);border-radius:22px;padding:19px;color:#fff;position:relative;overflow:hidden}.weather:after{content:'〰';position:absolute;right:-5px;bottom:-22px;font-size:110px;color:#ffffff10;transform:rotate(-12deg)}.weather-head{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}.weather .place{font-size:13px;color:#b9d2d1}.live{font-size:10px;color:#72ead5;background:none;border:0;font-family:inherit;cursor:pointer}.live:before{content:'●';margin-right:4px}.live.stale{color:#ffcf8a}.live.stale:before{content:'◌'}.score{font-size:45px;font-weight:900;letter-spacing:-3px;margin-top:7px;position:relative;z-index:1}.score small{font-size:14px;letter-spacing:0;color:#b9d2d1;font-weight:500}.weather-meta{display:flex;gap:17px;margin-top:12px;font-size:12px;color:#c7dfde;position:relative;z-index:1;flex-wrap:wrap}.weather-meta b{color:#fff;margin-left:3px}.geo-note{font-size:10.5px;color:#8fb0af;margin-top:10px;position:relative;z-index:1}.section-row{display:flex;justify-content:space-between;align-items:center;margin:24px 2px 11px}.section-row h2{font-size:18px;margin:0;letter-spacing:-.8px}.more{font-size:12px;color:var(--teal);font-weight:700;background:none;border:0;font-family:inherit;cursor:pointer}.recommend{background:var(--card);border-radius:18px;padding:17px;box-shadow:0 5px 16px #1b59600d;border:1px solid var(--line)}.rec-head{display:flex;justify-content:space-between}.rec-head h3{margin:0;font-size:19px}.rec-head p{margin:4px 0;color:var(--muted);font-size:12px}.badge{font-size:11px;color:var(--teal);background:#e5faf5;padding:5px 9px;border-radius:20px;height:max-content;font-weight:800;white-space:nowrap}.map{height:113px;border-radius:13px;margin:14px 0;background:radial-gradient(circle at 63% 44%,#b7e8df 0 3%,transparent 4%),linear-gradient(135deg,#dff0ed 25%,transparent 25%) 0 0/27px 27px,#cce7e3;position:relative;overflow:hidden}.map:before{content:'';position:absolute;width:175%;height:100px;border:2px solid #8acfc2;border-radius:50%;left:-42%;top:31px;transform:rotate(-18deg)}.pin{position:absolute;width:18px;height:18px;border-radius:50% 50% 50% 0;background:var(--teal);transform:rotate(-45deg);box-shadow:0 0 0 6px #11bfa522}.pin.me{background:var(--deep);box-shadow:0 0 0 6px #0d344022}.pin.zone{background:var(--red);box-shadow:0 0 0 6px #f26b6322}.pin span{position:absolute;transform:rotate(45deg);font-size:10px;color:var(--deep);white-space:nowrap;left:13px;top:15px;font-weight:800}.rec-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat{background:#f4f9f8;border-radius:11px;padding:10px 7px}.stat small{display:block;font-size:10px;color:var(--muted);margin-bottom:3px}.stat b{font-size:14px}.good{color:var(--teal)}.warn{color:var(--orange)}.bad{color:var(--red)}.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.quick button{border:1px solid var(--line);background:var(--card);border-radius:15px;padding:13px 4px;color:var(--ink);font:inherit;font-size:11px;font-weight:700;cursor:pointer}.quick span{display:block;font-size:22px;margin-bottom:7px}.alert-card{display:flex;gap:11px;align-items:center;background:#fff5ed;border:1px solid #ffe3ca;border-radius:15px;padding:13px}.alert-card.safe{background:#eafaf6;border-color:#c8eee6}.alert-card.danger{background:#fdecea;border-color:#f6c7c2}.alert-icon{font-size:22px}.alert-card b{font-size:13px}.alert-card p{margin:3px 0 0;font-size:11px;color:#9b8067}.alert-card.safe p{color:#5c9c8d}.alert-card.danger p{color:#c1615a}.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(430px,100%);height:76px;background:#ffffffeb;backdrop-filter:blur(14px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);z-index:5;padding:8px 7px 5px}.bottom button{border:0;background:none;color:#9aadb0;font:inherit;font-size:10px;font-weight:700;cursor:pointer}.bottom button span{display:block;font-size:21px;margin-bottom:3px}.bottom button.active{color:var(--teal)}.screen{display:none}.screen.active{display:block}.spot-list-item{display:flex;justify-content:space-between;align-items:center;padding:12px 4px;border-bottom:1px solid var(--line)}.spot-list-item:last-child{border-bottom:0}.spot-list-item b{font-size:13.5px;display:block}.spot-list-item small{color:var(--muted);font-size:11px}.spot-list-item .dist{font-size:12px;font-weight:800;color:var(--teal);white-space:nowrap}.upload-box{border:2px dashed var(--line);border-radius:14px;padding:24px 16px;text-align:center;cursor:pointer;background:#fafdfd}.upload-box img{max-width:100%;max-height:180px;border-radius:10px;margin-bottom:10px}.ai-result{margin-top:14px;text-align:left;background:#f4f9f8;border-radius:13px;padding:14px;font-size:12.5px;line-height:1.6}.ai-result b{font-size:15px;display:block;margin-bottom:6px;color:var(--deep)}.spinner{width:26px;height:26px;border:3px solid #d9ece9;border-top-color:var(--teal);border-radius:50%;margin:6px auto;animation:sp .7s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}.disclaimer{font-size:10.5px;color:var(--muted);margin-top:10px;line-height:1.5}.zone-item{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}.zone-item:last-child{border-bottom:0}.zone-item b{font-size:13px;display:block}.zone-item small{color:var(--muted);font-size:11px}.pill{font-size:10.5px;font-weight:800;padding:4px 9px;border-radius:20px;white-space:nowrap}.pill.ok{background:#e5faf5;color:var(--teal)}.pill.near{background:#fff2e0;color:var(--orange)}.pill.in{background:#fdecea;color:var(--red)}.season-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:14px 0}.season-tab{border:1px solid var(--line);background:#f4f9f8;border-radius:11px;padding:9px 4px;font:inherit;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer}.season-tab.active{background:var(--teal);border-color:var(--teal);color:#fff}.fish-fact-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.fish-fact{background:#fff;border-radius:10px;padding:9px 10px;text-align:left}.fish-fact small{display:block;font-size:10px;color:var(--muted);margin-bottom:2px}.fish-fact b{font-size:13px}.release-flag{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:800;padding:6px 11px;border-radius:20px;margin-top:10px}.release-flag.danger{background:#fdecea;color:var(--red)}.release-flag.safe{background:#eafaf6;color:var(--teal)}.release-flag.unknown{background:#fff2e0;color:var(--orange)}.modal-overlay{position:fixed;inset:0;background:#0d3440b3;display:none;align-items:center;justify-content:center;z-index:50;padding:20px}.modal-overlay.show{display:flex}.modal-box{background:#fff;border-radius:20px;padding:26px 22px;max-width:340px;width:100%;text-align:center;box-shadow:0 20px 50px #0003}.modal-icon{font-size:40px;margin-bottom:6px}.modal-box h3{margin:0 0 8px;font-size:19px;color:var(--red)}.modal-box p{margin:0;font-size:13px;color:var(--ink);line-height:1.5}.modal-facts{background:#fdecea;border-radius:12px;padding:10px 12px;margin-top:14px;text-align:left;font-size:12px;line-height:1.7;color:#8a3a35}.modal-close{width:100%;margin-top:16px;border:0;background:var(--deep);color:#fff;padding:13px;border-radius:12px;font-weight:800;font:inherit;cursor:pointer}
-@media(min-width:600px){.bottom{bottom:20px;border-radius:24px;border:1px solid var(--line)}.app{border-radius:26px;margin:20px auto;min-height:calc(100vh - 40px);overflow:hidden}}
+    :root { --ink:#102e37; --teal:#16b99f; --deep:#0b3b46; --bg:#f3f8f8; --line:#dfebea; --muted:#718a91; --orange:#fa9b42; --red:#ed6860; }
+    * { box-sizing:border-box; } body { margin:0; background:#dcebea; color:var(--ink); font-family:"Noto Sans KR",system-ui,sans-serif; }
+    button { font:inherit; } .app { width:min(100%,430px); min-height:100vh; margin:auto; padding-bottom:90px; background:var(--bg); box-shadow:0 0 48px #35625a38; }
+    .top { height:74px; padding:18px 20px 12px; display:flex; justify-content:space-between; align-items:center; background:#fff; }
+    .brand { display:flex; align-items:center; gap:7px; font-size:21px; font-weight:900; letter-spacing:-1px; }.brand-mark { width:11px;height:11px;border-radius:50%; background:var(--teal); box-shadow:0 0 0 4px #e0f9f4; }
+    .top-actions { display:flex; align-items:center; gap:9px; }.top-time { color:var(--muted); font-size:10px; font-variant-numeric:tabular-nums; white-space:nowrap; }.round { width:36px;height:36px;border:0;border-radius:50%;background:#eff7f6;cursor:pointer;font-size:17px; }.avatar { width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--deep);color:#fff;font-size:12px;font-weight:800; }
+    main { padding:18px 16px; }.screen { display:none; }.screen.active { display:block; animation:enter .24s ease-out; } @keyframes enter { from {opacity:0;transform:translateY(5px)} to {opacity:1;transform:none} }
+    .eyebrow { margin:3px 2px 5px;color:var(--muted);font-size:13px; }.title { margin:0 2px 19px;font-size:27px;line-height:1.35;letter-spacing:-1.8px; font-weight:900; }.title em { color:var(--teal);font-style:normal; }
+    .weather { position:relative;overflow:hidden;padding:19px;border-radius:22px;color:white;background:linear-gradient(135deg,#0d4652,#092f39); }.weather::after { content:"??;position:absolute;right:-5px;bottom:-38px;color:#ffffff0e;font-size:185px;transform:rotate(-15deg); }
+    .weather-head,.weather-info,.weather-meta,.weather-note { position:relative;z-index:1; }.weather-head { display:flex;justify-content:space-between;align-items:center; }.place { color:#bcdbd8;font-size:12px; }.live { border:0;background:#1f766f44;color:#75f0d8;border-radius:20px;padding:4px 8px;font-size:10px;font-weight:800; }.live.loading { color:#ffd28f; }.weather-info { display:flex;align-items:flex-end;gap:12px;margin-top:10px; }.score { font-size:47px;font-weight:900;letter-spacing:-3px;line-height:1; }.score small { font-size:13px;letter-spacing:0;color:#b8d4d1;font-weight:500; }.grade { margin-bottom:3px;border-radius:20px;padding:4px 8px;background:#ffffff19;font-size:11px;color:#d5fffa; }.weather-meta { display:flex;gap:14px;flex-wrap:wrap;margin-top:15px;color:#cbe3df;font-size:11px; }.weather-meta b { color:white;margin-left:3px;font-size:12px; }.weather-note { margin:11px 0 0;color:#91b8b4;font-size:10px; }.clock { margin-left:auto; margin-right:8px; color:#d5fffa; font-size:11px; font-variant-numeric:tabular-nums; }
+    .section-row { display:flex;justify-content:space-between;align-items:center;margin:25px 2px 11px; }.section-row h2 { margin:0;font-size:18px;letter-spacing:-.8px; }.more { border:0;background:none;color:var(--teal);font-size:12px;font-weight:800;cursor:pointer; }
+    .card { background:#fff;border:1px solid var(--line);border-radius:18px;padding:17px;box-shadow:0 5px 16px #164e550d; }.rec-head { display:flex;justify-content:space-between;gap:8px; }.rec-head h3 { margin:0;font-size:18px;letter-spacing:-.8px; }.rec-head p { margin:4px 0 0;color:var(--muted);font-size:11px; }.badge { height:max-content;white-space:nowrap;border-radius:20px;padding:5px 9px;background:#e4faf5;color:var(--teal);font-size:10px;font-weight:800; }
+    .map { height:122px;margin:14px 0;border-radius:13px;position:relative;overflow:hidden;background:radial-gradient(circle at 67% 40%,#f1bd8a 0 2px,transparent 3px),linear-gradient(135deg,#d8efeb 25%,transparent 25%) 0 0/25px 25px,#c6e4df; }.map::before { content:"";position:absolute;width:175%;height:100px;border:2px solid #8bcfc3;border-radius:50%;left:-40%;top:36px;transform:rotate(-17deg); }.map::after { content:"";position:absolute;width:120%;height:90px;border:2px solid #b3ddd5;border-radius:50%;left:15%;top:-50px;transform:rotate(20deg); }.pin { position:absolute;z-index:2;width:17px;height:17px;border-radius:50% 50% 50% 0;background:var(--teal);transform:rotate(-45deg);box-shadow:0 0 0 6px #16b99f28; }.pin::after { content:"";position:absolute;width:6px;height:6px;border-radius:50%;background:white;left:5.5px;top:5.5px; }.pin span { position:absolute;left:13px;top:14px;transform:rotate(45deg);white-space:nowrap;font-size:9px;font-weight:800;color:var(--deep); }.pin.me { background:var(--deep);box-shadow:0 0 0 6px #0b3b4622; }.pin.zone { background:var(--red);box-shadow:0 0 0 6px #ed686022; }
+    .stats { display:grid;grid-template-columns:repeat(3,1fr);gap:8px; }.stat { padding:10px 7px;border-radius:11px;background:#f3f9f8; }.stat small { display:block;margin-bottom:3px;color:var(--muted);font-size:9px; }.stat b { font-size:12px;word-break:keep-all; }.good { color:var(--teal); }.warn { color:var(--orange); }.bad { color:var(--red); }
+    .quick { display:grid;grid-template-columns:repeat(4,1fr);gap:8px; }.quick button { min-height:86px;padding:10px 3px;border:1px solid var(--line);border-radius:15px;background:#fff;color:var(--ink);font-size:10px;font-weight:700;cursor:pointer; }.quick span { display:block;margin-bottom:7px;font-size:23px; }.alert { display:flex;gap:11px;align-items:center;padding:13px;border:1px solid #c8eee6;border-radius:15px;background:#eafaf6; }.alert.caution { background:#fff5ed;border-color:#ffe3ca; }.alert.danger { background:#fdecea;border-color:#f6c7c2; }.alert-icon { font-size:21px; }.alert b { display:block;font-size:13px; }.alert p { margin:3px 0 0;color:#579388;font-size:11px;line-height:1.45; }.alert.caution p { color:#a77d59; }.alert.danger p { color:#bc625b; }
+    .bottom { position:fixed;z-index:8;bottom:0;left:50%;transform:translateX(-50%);width:min(430px,100%);height:76px;display:grid;grid-template-columns:repeat(5,1fr);padding:7px;background:#fffffff0;backdrop-filter:blur(14px);border-top:1px solid var(--line); }.bottom button { border:0;background:none;color:#91a5aa;font-size:10px;font-weight:700;cursor:pointer; }.bottom span { display:block;margin-bottom:3px;font-size:20px; }.bottom button.active { color:var(--teal); }
+    .spot { display:flex;justify-content:space-between;align-items:center;padding:13px 2px;border-bottom:1px solid var(--line); }.spot:last-child { border-bottom:0; }.spot b { display:block;font-size:13px; }.spot small { color:var(--muted);font-size:11px; }.distance { color:var(--teal);font-size:12px;font-weight:800; }.map.large { height:220px; }.primary { width:100%;margin-top:13px;padding:13px;border:0;border-radius:12px;background:var(--teal);color:white;font-size:13px;font-weight:800;cursor:pointer; }
+    .upload { border:2px dashed #d9e9e7;border-radius:14px;padding:25px 14px;text-align:center;background:#fbfdfd;cursor:pointer; }.upload img { max-width:100%;max-height:184px;border-radius:10px;object-fit:cover; }.upload h3 { margin:8px 0 4px;font-size:15px; }.upload p,.disclaimer { margin:0;color:var(--muted);font-size:11px;line-height:1.55; }.result { margin-top:14px;padding:14px;border-radius:13px;background:#f3f9f8;text-align:left;font-size:12px;line-height:1.7; }.result h3 { margin:0 0 6px;color:var(--deep);font-size:15px; }.result dl { display:grid;grid-template-columns:80px 1fr;gap:3px;margin:0; }.result dt { color:var(--muted); }.result dd { margin:0;font-weight:700; }.zone { display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid var(--line); }.zone:last-child { border:0; }.zone b { display:block;font-size:13px; }.zone small { color:var(--muted);font-size:10px; }.pill { border-radius:20px;padding:4px 8px;font-size:10px;font-weight:800; }.pill.ok { color:var(--teal);background:#e5faf5; }.pill.near { color:var(--orange);background:#fff2e0; }.pill.in { color:var(--red);background:#fdecea; }
+    @media (min-width:600px) { .app { min-height:calc(100vh - 40px);margin:20px auto;border-radius:25px;overflow:hidden; }.bottom { bottom:20px;border:1px solid var(--line);border-radius:22px; } }
   </style>
 </head>
-<body><main class="app">
-  <header class="top"><div class="brand"><i></i>SafeSea</div><div class="top-right"><span id="clockDisplay" style="font-size:12.5px;font-weight:800;color:var(--deep);letter-spacing:-.3px;margin-right:2px">--:--</span><button class="icon-btn" id="apiKeyBtn" title="API 키 설정 (Claude.ai 밖에서 사용 시 필요)">🔑</button><button class="icon-btn" id="refreshBtn" title="위치·날씨 새로고침">🔄</button><div class="avatar" id="avatarInitial" onclick="openNameModal()" title="이름 변경" style="cursor:pointer">-</div></div></header>
-  <div class="alert-card danger" id="nightWarning" style="display:none;margin:0 16px 0;border-radius:0 0 15px 15px"><span class="alert-icon">🔦</span><div><b>야간 주의</b><p>지금은 22시 이후예요. 갯바위·방파제에서는 발 밑을 꼭 조심하세요.</p></div></div>
-  <div class="content">
-    <section id="home" class="screen active">
-      <p class="greet" id="homeGreet">좋은 아침이에요 👋</p><h1 class="title">오늘 바다,<br><em>안전하게 떠나볼까요?</em></h1>
-      <article class="weather">
-        <div class="weather-head"><span class="place" id="wxPlace">📍 위치 확인 중...</span><button class="live" id="wxLive">LIVE</button></div>
-        <div class="score" id="wxScore">--<small>/100 출조지수</small></div>
-        <div class="weather-meta"><span>🌡 수온 <b id="wxTemp">--°</b></span><span>〰 파고 <b id="wxWave">--m</b></span><span>♨ 풍속 <b id="wxWind">--m/s</b></span></div>
-        <p class="geo-note" id="wxNote">GPS 위치 권한을 요청하고 있어요...</p>
-      </article>
-      <div class="section-row"><h2>오늘의 추천 포인트</h2><button class="more" onclick="go('spots')">전체보기 ›</button></div>
-      <article class="recommend"><div class="rec-head"><div><h3 id="recTitle">불러오는 중...</h3><p id="recDist">-</p></div><span class="badge" id="recBadge">추천 1위</span></div><div class="map"><div class="pin" id="recPin"><span id="recPinLabel"></span></div></div><div class="rec-stats"><div class="stat"><small>예상 어종</small><b id="recFish">-</b></div><div class="stat"><small>조류</small><b class="good" id="recTide">-</b></div><div class="stat"><small>예상 혼잡도</small><b id="recCrowd">-</b></div></div></article>
-      <div class="section-row"><h2>빠른 기능</h2></div><div class="quick"><button onclick="go('spots')"><span>🗺️</span>포인트 찾기</button><button onclick="go('ai')"><span>📸</span>어종 식별</button><button onclick="go('safety')"><span>🛟</span>구역 확인</button><button onclick="go('safety')"><span>⚠️</span>안전 알림</button></div>
-      <div class="section-row"><h2>안전 알림</h2><button class="more" onclick="go('safety')">자세히 ›</button></div>
-      <div class="alert-card" id="homeAlert"><span class="alert-icon" id="homeAlertIcon">⏳</span><div><b id="homeAlertTitle">정보를 불러오는 중이에요</b><p id="homeAlertDesc">위치와 기상 데이터를 확인하고 있어요.</p></div></div>
-    </section>
-
-    <section id="spots" class="screen"><p class="greet">내 주변 탐색</p><h1 class="title">낚시 포인트<br><em>지금 찾아보기</em></h1>
-      <article class="recommend"><h3 style="margin:0">부산 인근 포인트</h3><p style="color:var(--muted);font-size:12px;margin:4px 0 0">현재 위치 기준 거리순 · GPS 연동</p>
-        <div class="map" style="height:220px" id="spotsMap"></div>
-        <div id="spotsList"></div>
-        <button style="width:100%;border:0;background:var(--teal);color:#fff;border-radius:12px;padding:14px;font-weight:800;margin-top:12px;cursor:pointer" onclick="requestLocation(true)">현재 위치로 다시 검색하기</button>
-      </article>
-      <article class="recommend" id="spotDetailCard" style="margin-top:12px;display:none">
-        <div class="rec-head"><div><h3 id="sdName">-</h3><p id="sdMeta">-</p></div><span class="badge" id="sdSeasonBadge">-</span></div>
-        <div class="season-tabs" id="seasonTabs"></div>
-        <div id="sdBody"></div>
-        <p class="disclaimer">🗓️ 계절별 어종 정보는 일반적으로 알려진 참고 정보예요. 실제 조과는 그해 수온·기상·시간대에 따라 달라질 수 있어요.</p>
-      </article>
-    </section>
-
-    <section id="ai" class="screen"><p class="greet">SafeSea AI</p><h1 class="title">사진 한 장으로<br><em>어종을 확인해요</em></h1>
-      <article class="recommend" style="text-align:center;padding:22px 18px">
-        <div class="upload-box" id="uploadBox" onclick="document.getElementById('fileInput').click()">
-          <div id="uploadInner"><div style="font-size:46px">🐟</div><h3 style="margin:8px 0 4px">잡은 물고기 사진 업로드</h3><p style="font-size:12px;color:var(--muted);margin:0">SafeSea 어류 도감 기반 AI가 어종·최소 체장·금어기를 확인하고,<br>방생이 필요하면 바로 경고해드려요.</p></div>
-        </div>
-        <input type="file" id="fileInput" accept="image/*" style="display:none">
-        <div id="aiResultBox"></div>
-        <p class="disclaimer">⚠️ AI는 SafeSea 어류 도감(<span id="encCount">-</span>종)을 참고해 식별해요. 식별 결과는 참고용이며 실제와 다를 수 있고, 최소체장·금어기 등 법적 수치는 반드시 국립수산과학원·해양수산부 공식 고시로 다시 확인하세요.</p>
-      </article>
-    </section>
-
-    <section id="safety" class="screen"><p class="greet">안전 센터</p><h1 class="title">안전한 출조를<br><em>준비하세요</em></h1>
-      <div class="alert-card" id="safetyAlert"><span class="alert-icon" id="safetyIcon">⏳</span><div><b id="safetyTitle">확인 중</b><p id="safetyDesc">위치·기상 데이터를 불러오고 있어요.</p></div></div>
-      <article class="recommend" style="margin-top:12px"><h3 style="margin:0 0 6px">주변 낚시금지구역</h3><p style="font-size:11px;color:var(--muted);margin:0 0 10px">현재 GPS 위치 기준 가까운 순 · 부산 수영구청 공개자료</p><div id="zoneList"></div></article>
-      <article class="recommend" style="margin-top:12px"><h3 style="margin:0 0 4px">금어기·방류 크기 안내</h3><p style="font-size:11px;color:var(--muted);margin:0 0 10px">부산 인기 어종 · 수산자원관리법 시행령 기준(2026.1.1)</p><div id="closedSeasonList"></div></article>
-      <p class="disclaimer">※ 낚시금지구역은 <b>부산 수영구청 공개자료(2025.08 기준)</b>만 반영되어 있어요. 좌표는 실제 지명을 기준으로 근사한 원형 반경이라 실제 경계와 다를 수 있고, 부산의 다른 구·군 통제구역·금어기 정보는 아직 포함되지 않았어요. 금어기·방류 체장은 <b>수산자원관리법 시행령 별표1·2(2026.1.1 기준)</b>를 참고했으며, 낚시로 위반 시 「낚시 관리 및 육성법」에 따라 과태료(80만원 등)가 부과될 수 있어요. 법령은 수시로 개정되니 출조 전 해양수산부·국립수산과학원 최신 고시로 다시 확인하세요.</p>
-    </section>
-
-    <section id="my" class="screen"><p class="greet">내 SafeSea</p><h1 class="title" id="myTitle">회원님의<br><em>SafeSea</em></h1>
-      <article class="recommend">
-        <h3 style="margin:0 0 4px">잡은 물고기 기록</h3>
-        <p style="font-size:11px;color:var(--muted);margin:0 0 12px">어종과 크기(cm)를 입력해서 기록해보세요</p>
-        <div style="display:flex;gap:8px">
-          <input list="fishNameList" id="catchSpecies" placeholder="어종 (예: 감성돔)" style="flex:1.4;padding:12px;border-radius:10px;border:1px solid var(--line);font:inherit;box-sizing:border-box;min-width:0">
-          <input type="number" id="catchSize" placeholder="크기(cm)" inputmode="decimal" style="flex:1;padding:12px;border-radius:10px;border:1px solid var(--line);font:inherit;box-sizing:border-box;min-width:0">
-        </div>
-        <datalist id="fishNameList"></datalist>
-        <button onclick="addCatch()" style="width:100%;margin-top:10px;border:0;background:var(--teal);color:#fff;padding:13px;border-radius:12px;font-weight:800;font:inherit;cursor:pointer">기록 추가</button>
-        <p id="catchWarning" style="font-size:11.5px;color:var(--red);margin:8px 2px 0;display:none"></p>
-      </article>
-      <article class="recommend" style="margin-top:12px">
-        <div class="rec-head"><h3 style="margin:0">내 기록</h3><span class="badge" id="catchCountBadge">0마리</span></div>
-        <div id="catchList" style="margin-top:8px"></div>
-        <p class="disclaimer">🚫 표시는 <b>수산자원관리법 시행령(2026.1.1 기준)</b>상 방류 대상 크기 어종만 참고로 안내해요 (감성돔·참돔·농어·볼락·대구·도다리·쥐노래미). 다른 어종의 법적 최소 체장은 별도로 확인하세요.</p>
-      </article>
-    </section>
+<body>
+  <div class="app">
+    <header class="top"><div class="brand"><span class="brand-mark"></span>SafeSea</div><div class="top-actions"><span class="top-time" id="global-time" aria-live="polite">--:--:--</span><button class="round" id="refresh" aria-label="?덈줈怨좎묠">??/button><div class="avatar">誘쇱닔</div></div></header>
+    <main>
+      <section class="screen active" id="home">
+        <p class="eyebrow">醫뗭? ?꾩묠?댁뿉?? 誘쇱닔??/p><h1 class="title">?ㅻ뒛 諛붾떎,<br><em>?덉쟾?섍쾶 ?좊굹蹂쇨퉴??</em></h1>
+        <article class="weather"><div class="weather-head"><span class="place" id="place">?뱧 ?꾩튂 ?뺤씤 以?/span><span class="clock" id="current-time" aria-live="polite">--:--:--</span><button class="live loading" id="live">LOADING</button></div><div class="weather-info"><span class="score" id="score">--<small>/100 異쒖“吏??/small></span><span class="grade" id="grade">?뺣낫 ?섏쭛 以?/span></div><div class="weather-meta"><span>?뙜 ?섏삩 <b id="temp">--??/b></span><span>?뙄 ?뚭퀬 <b id="wave">--m</b></span><span>?뮜 ?띿냽 <b id="wind">--m/s</b></span></div><p class="weather-note" id="location-note">GPS ?꾩튂 沅뚰븳???붿껌?섍퀬 ?덉뼱??</p></article>
+        <div class="section-row"><h2>?ㅻ뒛??異붿쿇 ?ъ씤??/h2><button class="more" data-go="spots">?꾩껜蹂닿린 ??/button></div>
+        <article class="card"><div class="rec-head"><div><h3 id="rec-name">異붿쿇 ?ъ씤?몃? 李얜뒗 以?/h3><p id="rec-dist">?좎떆留?湲곕떎??二쇱꽭??/p></div><span class="badge">異붿쿇 1??/span></div><div class="map"><div class="pin" id="rec-pin" style="left:62%;top:39%"><span id="pin-label">?ъ씤??/span></div></div><div class="stats"><div class="stat"><small>?덉긽 ?댁쥌</small><b id="fish">-</b></div><div class="stat"><small>議곕쪟</small><b class="good" id="tide">-</b></div><div class="stat"><small>?덉긽 ?쇱옟??/small><b id="crowd">-</b></div></div></article>
+        <div class="section-row"><h2>鍮좊Ⅸ 湲곕뒫</h2></div><div class="quick"><button data-go="spots"><span>?뿺截?/span>?ъ씤??李얘린</button><button data-go="ai"><span>?맅</span>?댁쥌 ?앸퀎</button><button data-go="safety"><span>?썯</span>援ъ뿭 ?뺤씤</button><button data-go="safety"><span>?뵒</span>?덉쟾 ?뚮┝</button></div>
+        <div class="section-row"><h2>?덉쟾 ?뚮┝</h2><button class="more" data-go="safety">?먯꽭????/button></div><div class="alert" id="home-alert"><span class="alert-icon">?썯</span><div><b>?덉쟾 ?곹깭瑜??뺤씤?섍퀬 ?덉뼱??/b><p>?꾩튂? ?댁뼇 ?곗씠?곕? 諛뷀깢?쇰줈 ?덈궡?⑸땲??</p></div></div>
+      </section>
+      <section class="screen" id="spots"><p class="eyebrow">??二쇰? ?먯깋</p><h1 class="title">?싳떆 ?ъ씤?몃?<br><em>吏湲?李얠븘蹂댁꽭??/em></h1><article class="card"><h3 style="margin:0">遺??洹쇨탳 ?ъ씤??/h3><p class="eyebrow" style="margin:4px 0 0">?꾩옱 ?꾩튂 湲곗? 嫄곕━??쨌 GPS ?곕룞</p><div class="map large" id="spots-map"></div><div id="spots-list"></div><button class="primary" id="location-button">?꾩옱 ?꾩튂濡??ㅼ떆 寃?됲븯湲?/button></article></section>
+      <section class="screen" id="ai"><p class="eyebrow">SafeSea AI</p><h1 class="title">?ъ쭊 ???μ쑝濡?br><em>?댁쥌???뺤씤?섏꽭??/em></h1><article class="card" style="text-align:center"><label class="upload" for="file"><div id="upload-body"><div style="font-size:45px">?맆</div><h3>?≪? 臾쇨퀬湲??ъ쭊 ?낅줈??/h3><p>?ъ쭊???좏깮?섎㈃ AI ?앸퀎 ?덉떆瑜??뺤씤?????덉뼱??</p></div></label><input id="file" type="file" accept="image/*" hidden /><div style="margin:10px 0;text-align:left"><label for="gemini-key" style="font-size:11px;color:var(--muted)">Gemini API 키 (선택)</label><input id="gemini-key" type="password" placeholder="AIza..." style="width:100%;margin-top:5px;padding:9px;border:1px solid var(--line);border-radius:9px;font:inherit;font-size:12px" autocomplete="off" /><small style="display:block;margin-top:4px;color:var(--muted)">키는 이 기기에만 저장되며 사진 분석에 사용됩니다.</small></div><div id="analysis"></div><p class="disclaimer" style="margin-top:12px">AI ?앸퀎 寃곌낵??李멸퀬?⑹엯?덈떎. ?ㅼ젣 諛⑸쪟쨌梨꾪룷 ?꾩뿉???댁뼇?섏궛遺 諛??꾩? 洹쒖젙??瑗??뺤씤?섏꽭??</p></article></section>
+      <section class="screen" id="safety"><p class="eyebrow">?덉쟾 ?쇳꽣</p><h1 class="title">?덉쟾??異쒖“瑜?br><em>以鍮꾪븯?몄슂</em></h1><div class="alert" id="safety-alert"><span class="alert-icon">?썯</span><div><b>?덉쟾 ?곹깭 ?뺤씤 以?/b><p>?좎떆留?湲곕떎??二쇱꽭??</p></div></div><article class="card" style="margin-top:12px"><h3 style="margin:0 0 5px">二쇰? 洹쒖젙 援ъ뿭</h3><p class="eyebrow" style="margin:0 0 9px">?꾩옱 ?꾩튂?먯꽌 媛源뚯슫 ?덉떆 援ъ뿭</p><div id="zones"></div></article><article class="card" style="margin-top:12px"><h3 style="margin:0 0 9px">湲덉뼱湲??덈궡 <small style="color:var(--muted);font-size:10px">(?덉떆)</small></h3><div class="stat" style="margin-bottom:8px"><b>媛먯꽦??/b><small>4??1??~ 4??30??/small></div><div class="stat" style="margin-bottom:8px"><b>李몃룘</b><small>蹂꾨룄 湲덉뼱湲??놁쓬 쨌 泥댁옣 24cm ?댁긽 沅뚯옣</small></div><div class="stat"><b>?援?/b><small>1??16??~ 2??15??/small></div></article><p class="disclaimer" style="margin:12px 2px">援ъ뿭쨌湲덉뼱湲??뺣낫?????쒖뿰???덉떆?낅땲?? 異쒖“ ??愿??湲곌???理쒖떊 怨듭떇 怨듭?瑜??뺤씤?섏꽭??</p></section>
+      <section class="screen" id="my"><p class="eyebrow">?섏쓽 SafeSea</p><h1 class="title">誘쇱닔?섏쓽<br><em>異쒖“ 湲곕줉</em></h1><article class="card"><div class="stats"><div class="stat"><small>?대쾲 ??異쒖“</small><b>4??/b></div><div class="stat"><small>?덉쟾 ?뺤씤</small><b class="good">100%</b></div><div class="stat"><small>????ъ씤??/small><b>8怨?/b></div></div></article></section>
+    </main>
+    <nav class="bottom"><button class="active" data-go="home"><span>??/span>??/button><button data-go="spots"><span>??/span>?ъ씤??/button><button data-go="ai"><span>??/span>?댁쥌 AI</button><button data-go="safety"><span>??/span>?덉쟾</button><button data-go="my"><span>??/span>留덉씠</button></nav>
   </div>
-  <nav class="bottom"><button class="active" data-id="home" onclick="go('home')"><span>⌂</span>홈</button><button data-id="spots" onclick="go('spots')"><span>⌖</span>포인트</button><button data-id="ai" onclick="go('ai')"><span>✦</span>어종 AI</button><button data-id="safety" onclick="go('safety')"><span>♧</span>안전</button><button data-id="my" onclick="go('my')"><span>◯</span>마이</button></nav>
-  <div class="modal-overlay" id="nameModal"><div class="modal-box">
-    <div class="modal-icon">👋</div>
-    <h3 style="color:var(--deep)">SafeSea에 오신 걸 환영해요</h3>
-    <p>불러드릴 이름(또는 닉네임)을 입력해주세요.</p>
-    <input type="text" id="nameInput" placeholder="예: 민수" maxlength="12" style="width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);margin-top:12px;font:inherit;box-sizing:border-box">
-    <div style="display:flex;gap:8px;margin-top:14px">
-      <button onclick="saveUserName()" style="flex:1;border:0;background:var(--teal);color:#fff;padding:13px;border-radius:12px;font-weight:800;font:inherit;cursor:pointer">시작하기</button>
-    </div>
-  </div></div>
-  <div class="modal-overlay" id="releaseModal"><div class="modal-box">
-    <div class="modal-icon" id="modalIcon">🚫</div>
-    <h3 id="modalTitle">방생이 필요해요</h3>
-    <p id="modalDesc">-</p>
-    <div class="modal-facts" id="modalFacts"></div>
-    <button class="modal-close" onclick="closeReleaseModal()">확인했어요</button>
-  </div></div>
-  <div class="modal-overlay" id="apiKeyModal"><div class="modal-box">
-    <div class="modal-icon">🔑</div>
-    <h3 style="color:var(--deep)">Anthropic API 키 설정</h3>
-    <p>이 앱을 Claude.ai 미리보기 밖에서 단독으로 사용하려면 본인의 Anthropic API 키가 필요해요. 키는 <b>이 브라우저 세션에만 메모리로 저장</b>되고, 새로고침하면 다시 입력해야 해요. (기기에 저장되지 않아요)</p>
-    <input type="password" id="apiKeyInput" placeholder="sk-ant-..." style="width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);margin-top:12px;font:inherit;box-sizing:border-box">
-    <div style="display:flex;gap:8px;margin-top:14px">
-      <button onclick="saveApiKey()" style="flex:1;border:0;background:var(--teal);color:#fff;padding:13px;border-radius:12px;font-weight:800;font:inherit;cursor:pointer">저장</button>
-      <button onclick="closeApiKeyModal()" style="flex:1;border:1px solid var(--line);background:#fff;color:var(--ink);padding:13px;border-radius:12px;font-weight:800;font:inherit;cursor:pointer">취소</button>
-    </div>
-    <p style="font-size:10.5px;color:var(--muted);margin-top:12px;text-align:left">키는 <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">console.anthropic.com</a>에서 발급받을 수 있어요. Claude.ai 안에서 미리보기로 열었다면 키 없이도 작동하니 비워두세요.</p>
-  </div></div>
-</main>
-<script>
-/* ---------- 시계 & 야간 경고 ---------- */
-function updateClock(){
-  const now = new Date();
-  const hh = String(now.getHours()).padStart(2,'0');
-  const mm = String(now.getMinutes()).padStart(2,'0');
-  document.getElementById('clockDisplay').textContent = `${hh}:${mm}`;
-  const isNight = now.getHours() >= 22;
-  document.getElementById('nightWarning').style.display = isNight ? 'flex' : 'none';
-}
-updateClock();
-setInterval(updateClock, 1000);
-
-/* ---------- 사용자 이름 ---------- */
-let USER_NAME = '';
-function greetingByHour(){
-  const h = new Date().getHours();
-  if(h < 11) return '좋은 아침이에요';
-  if(h < 18) return '좋은 오후예요';
-  return '좋은 저녁이에요';
-}
-function applyUserName(name){
-  USER_NAME = name;
-  document.getElementById('avatarInitial').textContent = name.slice(0,2);
-  document.getElementById('homeGreet').textContent = `${greetingByHour()}, ${name}님 👋`;
-  document.getElementById('myTitle').innerHTML = `${name}님의<br><em>SafeSea</em>`;
-}
-function openNameModal(){
-  document.getElementById('nameInput').value = USER_NAME || '';
-  document.getElementById('nameModal').classList.add('show');
-  setTimeout(()=>document.getElementById('nameInput').focus(), 50);
-}
-async function saveUserName(){
-  const val = document.getElementById('nameInput').value.trim();
-  if(!val) return;
-  applyUserName(val);
-  document.getElementById('nameModal').classList.remove('show');
-  try{ await window.storage.set('user_name', val); }catch(e){ /* 저장 실패 시 이번 세션에서만 이름 사용 */ }
-}
-async function initUserName(){
-  try{
-    const res = await window.storage.get('user_name');
-    if(res && res.value){ applyUserName(res.value); return; }
-  }catch(e){ /* 저장된 이름 없음 */ }
-  openNameModal();
-}
-document.getElementById('nameInput')?.addEventListener?.('keydown', e=>{ if(e.key==='Enter') saveUserName(); });
-initUserName();
-
-/* ---------- 화면 전환 ---------- */
-function go(id){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.bottom button').forEach(x=>x.classList.toggle('active',x.dataset.id===id));window.scrollTo({top:0,behavior:'smooth'});if(id==='spots')renderSpotsScreen();if(id==='safety')renderSafetyScreen();if(id==='my')renderCatchList();}
-
-/* ---------- 기준 데이터 (부산 인근 예시) ---------- */
-const DEFAULT_POS = {lat:35.0510, lon:129.0870}; // 태종대 (위치 권한 거부 시 기본값)
-// seasons: 봄/여름/가을/겨울 각 계절에 잘 잡히는 것으로 일반적으로 알려진 어종 (참고용 일반 정보)
-const SPOTS = [
-  {name:'태종대 전망대', lat:35.0510, lon:129.0870, fish:'감성돔 · 벵에돔', seasons:{
-    '봄':['감성돔','볼락'], '여름':['벵에돔','전갱이'], '가을':['참돔','벵에돔'], '겨울':['감성돔','노래미']
-  }},
-  {name:'송도 방파제', lat:35.0763, lon:129.0116, fish:'볼락 · 전갱이', seasons:{
-    '봄':['망상어','볼락'], '여름':['전갱이','고등어'], '가을':['전갱이','고등어'], '겨울':['볼락']
-  }},
-  {name:'다대포 해수욕장', lat:35.0479, lon:128.9650, fish:'숭어 · 전어', seasons:{
-    '봄':['숭어'], '여름':['전어','농어'], '가을':['전어','숭어'], '겨울':['감성돔']
-  }},
-  {name:'기장 죽성리 방파제', lat:35.2483, lon:129.2230, fish:'감성돔 · 참돔', seasons:{
-    '봄':['감성돔'], '여름':['참돔','돌돔'], '가을':['참돔','감성돔'], '겨울':['감성돔','볼락']
-  }},
-  {name:'오륙도 선착장', lat:35.0965, lon:129.1097, fish:'볼락 · 감성돔', seasons:{
-    '봄':['감성돔','볼락'], '여름':['방어','벵에돔'], '가을':['방어','감성돔'], '겨울':['볼락']
-  }},
-  {name:'청사포 방파제', lat:35.1660, lon:129.1970, fish:'학공치 · 볼락', seasons:{
-    '봄':['볼락'], '여름':['전갱이'], '가을':['학공치','전갱이'], '겨울':['학공치','볼락']
-  }}
-];
-/* 낚시통제구역(낚시금지구역) 데이터
-   출처: 부산광역시 수영구 낚시통제구역 지정현황 (공공데이터포털, 2025.08.21 기준)
-   * 현재 공개 원문에 위경도 좌표가 없어, 각 구역의 실제 지명(민락항·아파트 단지 등) 위치를 기준으로
-     좌표를 잡고 고시된 길이(km)를 지름 삼아 반경을 근사했습니다. 실제 경계는 원이 아닌 불규칙한
-     구간이므로, 정확한 경계·최신 지정 여부는 반드시 수영구청 또는 관할 지자체 고시로 재확인하세요.
-   * 현재는 수영구 공개 자료만 반영되어 있어, 부산 다른 구·군의 통제구역은 포함되어 있지 않습니다. */
-const ZONES = [
-  {name:'민락항 낚시통제구역', lat:35.1534, lon:129.1279, radius:0.45, area:'18,000㎡ · 약 0.9km 구간', gu:'수영구', source:'수영구청 낚시통제구역 지정현황(2025.08 기준)'},
-  {name:'민락동 아파트 앞 낚시통제구역 (푸르지오~롯데캐슬)', lat:35.1577, lon:129.1333, radius:0.3, area:'7,000㎡ · 약 0.6km 구간', gu:'수영구', source:'수영구청 낚시통제구역 지정현황(2025.08 기준)'},
-  {name:'남천동 낚시통제구역 (삼익비치~광안대교)', lat:35.1445, lon:129.1230, radius:0.95, area:'22,700㎡ · 약 1.9km 구간', gu:'수영구', source:'수영구청 낚시통제구역 지정현황(2025.08 기준)'}
-];
-/* 금어기·최소 체장(방류 기준) 데이터 — 부산 인근 갯바위·방파제 인기 어종 위주로 구성
-   출처: 수산자원관리법 시행령 별표1(금어기)·별표2(금지체장) — 2026.1.1 기준(2024.6.4. 개정)
-   전장(주둥이~꼬리지느러미 끝) 기준. 낚시로 위반 시 낚시 관리 및 육성법에 따라 과태료 80만원.
-   법령은 수시 개정되므로 출조 전 해양수산부·국립수산과학원 최신 고시로 재확인하세요. */
-const CLOSED_SEASONS = [
-  {species:'감성돔', period:'5월 1일 ~ 5월 31일', min_length:'25cm'},
-  {species:'참돔', period:'금어기 없음 (연중 가능)', min_length:'24cm'},
-  {species:'농어', period:'금어기 없음 (연중 가능)', min_length:'30cm'},
-  {species:'볼락', period:'금어기 없음 (연중 가능)', min_length:'15cm'},
-  {species:'대구', period:'1월 16일 ~ 2월 15일', min_length:'35cm'},
-  {species:'문치가자미(도다리)', period:'12월 1일 ~ 다음 해 1월 31일', min_length:'20cm'},
-  {species:'쥐노래미(놀래미)', period:'11월 1일 ~ 12월 31일', min_length:'20cm'}
-];
-
-/* ---------- 어류 도감 (식별 참고용, 일반 생태정보 · 법적 수치 아님) ----------
-   AI 사진 식별 정확도를 높이기 위한 참고 목록입니다.
-   최소체장·금어기 등 "법적 규제 수치"는 여기 넣지 않고, 규제 대상 여부만 표시합니다.
-   (규제 수치는 국립수산과학원·해양수산부 공식 고시로만 확정되며, AI가 매번 참고자료+판단으로 응답합니다) */
-const FISH_ENCYCLOPEDIA = [
-  // 도미류
-  {name:'참돔', family:'도미과', feature:'분홍빛 몸에 파란 반점, 여름~가을 갯바위·선상 인기어종', regulated:true},
-  {name:'감성돔', family:'도미과', feature:'은회색 몸, 봄 산란기 내만권 접근, 방파제·갯바위 인기어종', regulated:true},
-  {name:'황돔', family:'도미과', feature:'몸 전체 황금빛, 참돔과 비슷하나 소형', regulated:false},
-  {name:'붉돔', family:'도미과', feature:'선홍빛 몸, 참돔보다 등지느러미 가시 김', regulated:false},
-  {name:'청돔', family:'도미과', feature:'남해 남부·제주 서식, 몸에 청록빛', regulated:false},
-  {name:'벵에돔', family:'황줄깃돔과', feature:'검은 몸, 갯바위 찌낚시 대표어종, 여름 성어기', regulated:false},
-  {name:'긴꼬리벵에돔', family:'황줄깃돔과', feature:'벵에돔보다 꼬리지느러미 길고 힘 좋음, 제주·먼바다 갯바위', regulated:false},
-  {name:'돌돔', family:'돌돔과', feature:'몸에 굵은 세로줄무늬, 여름 산란기, 고급 대상어', regulated:true},
-  {name:'강담돔', family:'돌돔과', feature:'돌돔과 비슷하나 줄무늬 흐릿, 이빨이 부리 모양', regulated:false},
-  {name:'벤자리', family:'하스돔과', feature:'몸에 세로 줄무늬, 여름 밤낚시 대상', regulated:false},
-  {name:'자리돔', family:'자리돔과', feature:'소형 어종, 제주 특산 물회 재료', regulated:false},
-  // 볼락/쏨뱅이류
-  {name:'볼락', family:'양볼락과', feature:'몸 갈색~붉은색, 겨울~봄 방파제 인기어종', regulated:true},
-  {name:'조피볼락(우럭)', family:'양볼락과', feature:'검은빛 몸, 사철 선상·방파제 인기어종', regulated:true},
-  {name:'개볼락', family:'양볼락과', feature:'볼락과 비슷, 무늬 진하고 몸통 굵음', regulated:false},
-  {name:'불볼락(열기)', family:'양볼락과', feature:'선홍빛 몸, 동해·심해 선상낚시 대상', regulated:false},
-  {name:'쏨뱅이', family:'양볼락과', feature:'붉은갈색 반점, 지느러미 가시에 독', regulated:false},
-  // 농어류
-  {name:'농어', family:'농어과', feature:'은백색 대형어, 봄·가을 하구·방파제 루어 인기어종', regulated:true},
-  {name:'점농어', family:'농어과', feature:'몸에 검은 반점 있는 농어류, 서해 하구 서식', regulated:false},
-  // 전갱이/방어류
-  {name:'전갱이', family:'전갱이과', feature:'몸 옆줄에 단단한 비늘(모비늘), 여름~가을 무리 회유', regulated:false},
-  {name:'방어', family:'전갱이과', feature:'대형 회유어, 가을~겨울 지깅 대상, 옆줄 노란띠', regulated:true},
-  {name:'부시리', family:'전갱이과', feature:'방어와 유사, 몸이 더 유선형이고 여름 활성', regulated:false},
-  {name:'잿방어', family:'전갱이과', feature:'방어류 중 몸높이 가장 높음, 여름 회유', regulated:false},
-  {name:'꼬치고기', family:'꼬치고기과', feature:'몸이 길고 이빨 날카로움, 여름 루어 대상', regulated:false},
-  // 고등어/다랑어류
-  {name:'고등어', family:'고등어과', feature:'등에 물결무늬, 가을 선상·방파제 인기어종', regulated:true},
-  {name:'망치고등어', family:'고등어과', feature:'배에 점무늬 있는 고등어, 고등어와 혼획', regulated:false},
-  {name:'참다랑어', family:'고등어과', feature:'대형 다랑어, 몸통 굵고 강한 힘', regulated:false},
-  {name:'가다랑어', family:'고등어과', feature:'배에 진한 줄무늬, 여름 남해 회유', regulated:false},
-  // 갈치/삼치류
-  {name:'갈치', family:'갈치과', feature:'은백색 띠 모양 몸, 여름~가을 야간 선상낚시', regulated:true},
-  {name:'삼치', family:'고등어과', feature:'몸에 검은 줄무늬, 가을~겨울 캐스팅 인기어종', regulated:true},
-  // 조기/민어류
-  {name:'참조기', family:'민어과', feature:'황금빛 몸, 부레로 소리 냄, 봄 산란', regulated:true},
-  {name:'부세', family:'민어과', feature:'참조기와 비슷, 몸이 더 크고 통통함', regulated:false},
-  {name:'수조기', family:'민어과', feature:'조기류 중 붉은빛 도는 종', regulated:false},
-  {name:'보구치', family:'민어과', feature:'흰빛 몸, 여름 밤낚시 대상, 백조기라고도 함', regulated:false},
-  {name:'민어', family:'민어과', feature:'대형 은백색 어종, 여름 산란기 서해 특산', regulated:true},
-  // 전어/청어류
-  {name:'전어', family:'청어과', feature:'은빛 몸에 검은 반점, 가을 대표 별미 어종', regulated:true},
-  {name:'청어', family:'청어과', feature:'등 푸른빛, 겨울 산란기 연안 접근', regulated:true},
-  {name:'정어리', family:'청어과', feature:'소형 등푸른 어종, 무리 지어 회유', regulated:false},
-  {name:'밴댕이', family:'청어과', feature:'전어와 비슷, 몸이 더 납작하고 작음', regulated:false},
-  // 숭어류
-  {name:'숭어', family:'숭어과', feature:'회색 등, 겨울 참숭어(가숭어) 별미, 하구 서식', regulated:false},
-  {name:'가숭어(참숭어)', family:'숭어과', feature:'숭어보다 눈 노랗고 겨울철 맛 좋음', regulated:false},
-  // 학공치
-  {name:'학공치', family:'학공치과', feature:'긴 부리 모양 아래턱, 가을~겨울 방파제 인기어종', regulated:false},
-  // 장어류
-  {name:'붕장어(아나고)', family:'붕장어과', feature:'몸 길고 미끈, 여름 밤 원투낚시 대상', regulated:true},
-  {name:'갯장어(하모)', family:'갯장어과', feature:'날카로운 이빨, 여름 여수·남해 별미', regulated:true},
-  {name:'뱀장어', family:'뱀장어과', feature:'민물·기수역 서식, 몸 가늘고 길다', regulated:false},
-  {name:'먹장어(곰장어)', family:'먹장어과', feature:'눈 퇴화, 점액질 많음, 부산 명물', regulated:false},
-  // 가자미/광어류
-  {name:'넙치(광어)', family:'넙치과', feature:'눈이 좌측에 몰림, 몸 납작, 사철 인기어종', regulated:true},
-  {name:'문치가자미(도다리)', family:'가자미과', feature:'눈이 우측에 몰림, 봄철 도다리쑥국 재료', regulated:true},
-  {name:'참가자미', family:'가자미과', feature:'몸에 붉은 점 없음, 동해 대표 가자미', regulated:true},
-  {name:'용가자미', family:'가자미과', feature:'몸이 길쭉한 가자미류, 동해 서식', regulated:true},
-  {name:'기름가자미(물가자미)', family:'가자미과', feature:'몸에 기름기 많고 부드러움, 포항 특산', regulated:true},
-  {name:'돌가자미', family:'가자미과', feature:'몸에 돌기 있는 가자미, 횟감으로 인기', regulated:false},
-  {name:'강도다리', family:'가자미과', feature:'양식 대상어, 몸에 진한 무늬', regulated:false},
-  {name:'노랑가오리', family:'색가오리과', feature:'꼬리에 독가시, 몸 마름모꼴', regulated:false},
-  {name:'참홍어', family:'홍어과', feature:'마름모꼴 체반, 흑산도 홍어로 유명', regulated:true},
-  // 대구/명태류
-  {name:'대구', family:'대구과', feature:'겨울 산란기 진해만 회유, 큰 입과 수염', regulated:true},
-  {name:'명태', family:'대구과', feature:'냉수성 어종, 동해 회유, 어린 것은 노가리', regulated:true},
-  {name:'도루묵', family:'도루묵과', feature:'겨울 산란기 강원 연안, 알이 많음', regulated:true},
-  // 노래미류
-  {name:'쥐노래미(놀래미)', family:'쥐노래미과', feature:'갈색 반점 몸, 사철 방파제 인기어종', regulated:true},
-  {name:'노래미', family:'쥐노래미과', feature:'쥐노래미와 유사, 몸이 더 가늘다', regulated:false},
-  // 독가시치/자바리류
-  {name:'독가시치(따치)', family:'독가시치과', feature:'등지느러미에 독가시, 제주·남해 여름 대상', regulated:false},
-  {name:'자바리(다금바리)', family:'바리과', feature:'대형 고급어, 제주 다금바리로 유명', regulated:false},
-  {name:'능성어', family:'바리과', feature:'몸에 사선 줄무늬, 여름 선상 고급 대상어', regulated:false},
-  {name:'붉바리', family:'바리과', feature:'붉은빛 몸에 반점, 제주·남해 서식', regulated:false},
-  // 오징어/문어류
-  {name:'살오징어', family:'살오징어과', feature:'몸통 길쭉, 가을~겨울 야간 채낚기 대상', regulated:true},
-  {name:'한치(창오징어)', family:'꼴뚜기과', feature:'몸이 짧고 통통, 제주 여름 특산', regulated:false},
-  {name:'무늬오징어', family:'참갑오징어과', feature:'몸에 갈색 무늬, 남해·제주 루어 대상', regulated:false},
-  {name:'갑오징어', family:'참갑오징어과', feature:'몸통 넓적, 안에 딱딱한 뼈(갑) 있음', regulated:false},
-  {name:'주꾸미', family:'문어과', feature:'봄 산란기 인기, 소라·항아리 어법', regulated:true},
-  {name:'참문어(돌문어)', family:'문어과', feature:'국내 연안 문어, 갯바위·테트라포드 서식', regulated:true},
-  {name:'낙지', family:'문어과', feature:'다리 가늘고 김, 갯벌 서식, 여름 금어기', regulated:true},
-  {name:'대문어(피문어)', family:'문어과', feature:'대형 문어, 동해 심해 서식', regulated:true},
-  // 조개/게류
-  {name:'꽃게', family:'꽃게과', feature:'등딱지 청록빛, 마지막 다리 노 모양', regulated:true},
-  {name:'대게', family:'물맞이게과', feature:'다리 길고 가늘음, 동해 겨울 특산', regulated:true},
-  {name:'붉은대게(홍게)', family:'물맞이게과', feature:'대게보다 붉은빛, 심해 서식', regulated:true},
-  {name:'소라', family:'소라과', feature:'뿔 모양 돌기 있는 껍데기', regulated:true},
-  {name:'전복', family:'전복과', feature:'타원형 껍데기에 숨구멍, 고급 패류', regulated:true},
-  {name:'키조개', family:'키조개과', feature:'삼각형 큰 조개, 관자가 별미', regulated:true},
-  {name:'새조개', family:'새조개과', feature:'둥글고 골이 있는 조개, 겨울 별미', regulated:true},
-  {name:'가리비', family:'가리비과', feature:'부채꼴 껍데기, 골이 뚜렷', regulated:true},
-  // 기타
-  {name:'양태', family:'양태과', feature:'몸 납작하고 길쭉, 여름 루어 대상', regulated:false},
-  {name:'쥐치', family:'쥐치과', feature:'몸이 마름모꼴, 껍질 두껍고 거침', regulated:false},
-  {name:'말쥐치', family:'쥐치과', feature:'쥐치보다 크고 쥐포 원료로 유명', regulated:true},
-  {name:'임연수어', family:'쥐노래미과', feature:'몸에 세로 줄무늬, 동해 냉수성 어종', regulated:false},
-  {name:'멸치', family:'멸치과', feature:'소형 은백색 어종, 봄~가을 대량 어획', regulated:false},
-  {name:'옥돔', family:'옥돔과', feature:'분홍빛 몸에 노란 줄무늬, 제주 특산', regulated:true},
-  {name:'미거지(곰치)', family:'꼼치과', feature:'몸이 부드럽고 물컹, 곰치국 재료', regulated:true},
-  {name:'매퉁이', family:'매퉁이과', feature:'몸이 가늘고 이빨 날카로움, 원투낚시 혼획', regulated:false},
-  {name:'기수재첩(재첩)', family:'재첩과', feature:'하구 서식 소형 조개, 재첩국 재료', regulated:true}
-];
-
-let userPos = null;
-let currentAddress = null;
-let watchId = null;
-let userApiKey = null;
-
-/* ---------- API 키 설정 (Claude.ai 밖에서 단독 사용 시) ---------- */
-function anthropicHeaders(){
-  const h = {'Content-Type':'application/json'};
-  if(userApiKey){
-    h['x-api-key'] = userApiKey;
-    h['anthropic-version'] = '2023-06-01';
-    h['anthropic-dangerous-direct-browser-access'] = 'true';
-  }
-  return h;
-}
-function openApiKeyModal(){
-  document.getElementById('apiKeyInput').value = userApiKey || '';
-  document.getElementById('apiKeyModal').classList.add('show');
-}
-function closeApiKeyModal(){ document.getElementById('apiKeyModal').classList.remove('show'); }
-function saveApiKey(){
-  const v = document.getElementById('apiKeyInput').value.trim();
-  userApiKey = v || null;
-  updateApiKeyBtnState();
-  closeApiKeyModal();
-}
-function updateApiKeyBtnState(){
-  const btn = document.getElementById('apiKeyBtn');
-  if(!btn) return;
-  btn.style.background = userApiKey ? '#e5faf5' : '#f0f7f6';
-  btn.title = userApiKey ? 'API 키 설정됨 (변경하려면 클릭)' : 'API 키 설정 (Claude.ai 밖에서 사용 시 필요)';
-}
-document.getElementById('apiKeyBtn').addEventListener('click', openApiKeyModal);
-
-/* ---------- 유틸 ---------- */
-function haversineKm(lat1,lon1,lat2,lon2){
-  const R=6371, toRad=d=>d*Math.PI/180;
-  const dLat=toRad(lat2-lat1), dLon=toRad(lon2-lon1);
-  const a=Math.sin(dLat/2)**2+Math.cos(toRad(lat1))*Math.cos(toRad(lat2))*Math.sin(dLon/2)**2;
-  return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
-}
-function nearestSpots(pos){
-  return SPOTS.map(s=>({...s,dist:haversineKm(pos.lat,pos.lon,s.lat,s.lon)})).sort((a,b)=>a.dist-b.dist);
-}
-function driveMinutes(km){ return Math.max(1,Math.round(km/0.5)); } // 대략 도심 평균속도 30km/h 가정
-const SEASONS = ['봄','여름','가을','겨울'];
-function currentSeason(){
-  const m = new Date().getMonth()+1;
-  if(m>=3 && m<=5) return '봄';
-  if(m>=6 && m<=8) return '여름';
-  if(m>=9 && m<=11) return '가을';
-  return '겨울';
-}
-function seasonEmoji(s){
-  return s==='봄' ? '🌱' : s==='여름' ? '☀️' : s==='가을' ? '🍁' : '❄️';
-}
-
-/* ---------- 위치 요청 (GPS 연동) ---------- */
-function requestLocation(forceRefresh){
-  document.getElementById('wxNote').textContent = 'GPS 위치 확인 중...';
-  document.getElementById('wxPlace').textContent = '📍 위치 확인 중...';
-  if(!navigator.geolocation){
-    handlePosition(DEFAULT_POS, false, '이 브라우저는 GPS(위치 정보)를 지원하지 않아 태종대 기준 예시 위치로 표시해요.');
-    return;
-  }
-  navigator.geolocation.getCurrentPosition(
-    pos=>handlePosition({lat:pos.coords.latitude, lon:pos.coords.longitude, accuracy:pos.coords.accuracy}, true),
-    err=>{
-      let msg = '위치 정보를 가져오지 못해 태종대 기준 예시 위치로 표시해요.';
-      if(err.code === err.PERMISSION_DENIED) msg = '위치 권한이 거부되어 태종대 기준 예시 위치로 표시해요. 브라우저 주소창의 자물쇠 아이콘에서 위치 권한을 허용해주세요.';
-      else if(err.code === err.POSITION_UNAVAILABLE) msg = 'GPS 신호를 확인할 수 없어 태종대 기준 예시 위치로 표시해요. 실외 또는 GPS가 켜진 환경에서 다시 시도해주세요.';
-      else if(err.code === err.TIMEOUT) msg = '위치 확인이 지연되어 태종대 기준 예시 위치로 표시해요. 다시 시도해주세요.';
-      handlePosition(DEFAULT_POS, false, msg);
-    },
-    {enableHighAccuracy:true, timeout:8000, maximumAge:60000}
-  );
-  // 실시간 위치 갱신(선택) - 위치가 크게 바뀌면 자동으로 다시 계산
-  if(navigator.geolocation.watchPosition){
-    if(watchId!==null) navigator.geolocation.clearWatch(watchId);
-    watchId = navigator.geolocation.watchPosition(
-      pos=>{
-        const newPos = {lat:pos.coords.latitude, lon:pos.coords.longitude, accuracy:pos.coords.accuracy};
-        if(!userPos || haversineKm(userPos.lat,userPos.lon,newPos.lat,newPos.lon) > 0.3){
-          handlePosition(newPos, true);
-        }
-      },
-      ()=>{},
-      {enableHighAccuracy:true, maximumAge:30000, timeout:15000}
-    );
-  }
-}
-function handlePosition(pos, isReal, errMsg){
-  userPos = pos;
-  const accTxt = (isReal && pos.accuracy) ? ` (정확도 약 ±${Math.round(pos.accuracy)}m)` : '';
-  document.getElementById('wxNote').textContent = isReal
-    ? `현재 GPS 위치를 기준으로 실시간 표시하고 있어요.${accTxt}`
-    : (errMsg || '위치 권한이 없어 태종대 기준 예시 위치로 표시 중이에요. 정확한 정보를 위해 위치 접근을 허용해주세요.');
-  loadWeatherAndRecommend(pos);
-  if(isReal){
-    reverseGeocode(pos.lat, pos.lon).then(addr=>{
-      currentAddress = addr;
-      if(addr) document.getElementById('wxPlace').textContent = `📍 ${addr} · 현재 GPS 위치`;
+  <script>
+    const fallback={lat:35.051,lon:129.087}, spots=[
+      ['?〓룄 ?붾궓怨듭썝',35.051,129.087,'媛먯꽦??쨌 踰듭뿉??],['?ㅻ???諛⑺뙆??,35.0763,129.0116,'蹂쇰씫 쨌 ?곕윮'],['媛?뺣룄 ???빆',35.0479,128.965,'愿묒뼱 쨌 ?꾩뼱'],['湲곗옣 二쎌꽦由?諛⑺뙆??,35.2483,129.223,'媛먯꽦??쨌 李몃룘'],['?ㅻ쪠???댁븞',35.0965,129.1097,'蹂쇰씫 쨌 媛먯꽦??],['泥?궗??諛⑺뙆??,35.166,129.197,'?숆났移?쨌 蹂쇰씫']
+    ], zones=[['?댁뼇?앺깭蹂댄샇援ъ뿭 (?덉떆)',35.0965,129.1097,.5],['遺?고빆 遺곹빆 ?쒗븳援ъ뿭 (?덉떆)',35.1035,129.0431,.8],['?댁슫? ?댁닔?뺤옣 ?섏쁺援ъ뿭 (?덉떆)',35.1587,129.1604,.3]; let position=fallback, condition={wave:.4,wind:3.1,temp:20.8,current:.18};
+    const $=s=>document.querySelector(s), km=(a,b,c,d)=>{const r=6371,x=v=>v*Math.PI/180,A=x(c-a),B=x(d-b),q=Math.sin(A/2)**2+Math.cos(x(a))*Math.cos(x(c))*Math.sin(B/2)**2;return r*2*Math.atan2(Math.sqrt(q),Math.sqrt(1-q))};
+    const nearby=()=>spots.map(s=>({...{name:s[0],lat:s[1],lon:s[2],fish:s[3]},dist:km(position.lat,position.lon,s[1],s[2])})).sort((a,b)=>a.dist-b.dist);
+    function score(){let s=100,{wave,wind,current}=condition;if(wave>1.5)s-=40;else if(wave>1)s-=25;else if(wave>.6)s-=12;else if(wave>.3)s-=4;if(wind>10)s-=35;else if(wind>7)s-=20;else if(wind>4)s-=8;if(current>.5)s-=15;else if(current>.3)s-=6;return Math.max(5,Math.round(s))}
+    function render(){const s=score(), top=nearby()[0], danger=condition.wave>1.2||condition.wind>10,caution=!danger&&(condition.wave>.6||condition.wind>7), grade=danger?'異쒖“ 鍮꾧텒??:caution?'二쇱쓽 ?꾩슂':'異쒖“ ?묓샇'; $('#score').innerHTML=`${s}<small>/100 異쒖“吏??/small>`; $('#grade').textContent=grade; $('#temp').textContent=condition.temp.toFixed(1)+'??; $('#wave').textContent=condition.wave.toFixed(1)+'m'; $('#wind').textContent=condition.wind.toFixed(1)+'m/s'; $('#rec-name').textContent=top.name; $('#rec-dist').textContent=`?꾩옱 ?꾩튂?먯꽌 ${top.dist.toFixed(1)}km 쨌 李⑤웾 ??${Math.max(1,Math.round(top.dist*2))}遺?; $('#fish').textContent=top.fish; $('#tide').textContent=condition.current<.25?'醫뗭쓬':condition.current<.45?'蹂댄넻':'二쇱쓽'; $('#tide').className=condition.current<.25?'good':condition.current<.45?'warn':'bad'; const busy=(new Date().getDay()%6===0&&new Date().getHours()>8&&new Date().getHours()<18); $('#crowd').textContent=busy?'?쇱옟 ?덉긽':'?ъ쑀'; $('#crowd').className=busy?'bad':'good'; $('#pin-label').textContent=top.name;
+      const alertClass=danger?'danger':caution?'caution':''; const message=danger?['?좑툘','湲곗긽 ?꾪뿕 ?뚮┝','?믪? ?뚭퀬 ?먮뒗 媛뺥뭾??媛먯??먯뼱?? 異쒖“瑜?誘몃（???몄씠 ?덉쟾?⑸땲??']:caution?['?뵒','湲곗긽 二쇱쓽 ?뚮┝','?덉쟾 ?λ퉬瑜?媛뽰텛怨??꾩옣 ?곹솴???먯＜ ?뺤씤?섏꽭??']:['?썯','?꾩옱 ?꾪뿕 ?뚮┝???놁뼱??,'二쇰? ?댁뿭怨?湲곗긽 ?곹깭媛 鍮꾧탳???덉젙?곸엯?덈떎.']; for(const id of ['home-alert','safety-alert']){const el=$('#'+id);el.className='alert '+alertClass;el.innerHTML=`<span class="alert-icon">${message[0]}</span><div><b>${message[1]}</b><p>${message[2]}</p></div>`} renderSpots();renderZones(); }
+    function renderSpots(){const near=nearby(); $('#spots-list').innerHTML=near.map((x,i)=>`<div class="spot"><div><b>${i+1}??쨌 ${x.name}</b><small>${x.fish} 쨌 ?꾩옱 ?꾩튂?먯꽌 ${x.dist.toFixed(1)}km</small></div><span class="distance">${x.dist.toFixed(1)}km</span></div>`).join(''); $('#spots-map').innerHTML='<div class="pin me" style="left:50%;top:50%"><span>???꾩튂</span></div>'+near.slice(0,5).map(x=>{const l=Math.max(8,Math.min(86,50+(x.lon-position.lon)*750)),t=Math.max(10,Math.min(83,50-(x.lat-position.lat)*750));return `<div class="pin" style="left:${l}%;top:${t}%"><span>${x.name}</span></div>`}).join('')}
+    function renderZones(){ $('#zones').innerHTML=zones.map(z=>{const d=km(position.lat,position.lon,z[1],z[2]);let p=`<span class="pill ok">${d.toFixed(1)}km</span>`;if(d<=z[3])p='<span class="pill in">援ъ뿭 ??/span>';else if(d<=z[3]+.5)p='<span class="pill near">洹쇱젒</span>';return `<div class="zone"><div><b>${z[0]}</b><small>湲곗젏 諛섍꼍 ${z[3]}km</small></div>${p}</div>`}).join('') }
+    async function load(){ $('#live').textContent='LOADING';$('#live').classList.add('loading'); try{const u=`https://api.open-meteo.com/v1/forecast?latitude=${position.lat}&longitude=${position.lon}&current=temperature_2m,wind_speed_10m`;const m=`https://marine-api.open-meteo.com/v1/marine?latitude=${position.lat}&longitude=${position.lon}&current=wave_height,sea_surface_temperature,ocean_current_velocity`;const [a,b]=await Promise.all([fetch(u),fetch(m)]),w=await a.json(),o=await b.json();condition={temp:o.current?.sea_surface_temperature??w.current?.temperature_2m??20.8,wave:o.current?.wave_height??.4,wind:w.current?.wind_speed_10m??3.1,current:o.current?.ocean_current_velocity??.18}}catch(e){} $('#live').textContent='??LIVE';$('#live').classList.remove('loading');render() }
+    function updateClock(){const now=new Date(),time=new Intl.DateTimeFormat('ko-KR',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false,timeZone:'Asia/Seoul'}).format(now);$('#current-time').textContent=time+' KST';$('#global-time').textContent=time+' KST'} updateClock();setInterval(updateClock,1000);
+    function locate(){ $('#location-note').textContent='GPS ?꾩튂瑜??뺤씤?섍퀬 ?덉뼱??'; if(!navigator.geolocation){$('#location-note').textContent='GPS瑜??ъ슜?????놁뼱 ?〓룄 湲곗? ?덉떆 ?꾩튂瑜??쒖떆?⑸땲??';load();return}navigator.geolocation.getCurrentPosition(x=>{position={lat:x.coords.latitude,lon:x.coords.longitude};$('#place').textContent='?뱧 ?꾩옱 GPS ?꾩튂';$('#location-note').textContent=`?꾩옱 GPS ?꾩튂 (${position.lat.toFixed(5)}, ${position.lon.toFixed(5)})瑜?湲곗??쇰줈 ?덈궡?⑸땲??`;load()},()=>{$('#place').textContent='?뱧 ?〓룄 湲곗? ?덉떆 ?꾩튂';$('#location-note').textContent='?꾩튂 沅뚰븳???놁뼱 ?〓룄 湲곗? ?덉떆 ?꾩튂瑜??쒖떆?⑸땲??';load()},{enableHighAccuracy:true,timeout:7000,maximumAge:60000})}
+    function go(id){document.querySelectorAll('.screen').forEach(x=>x.classList.toggle('active',x.id===id));document.querySelectorAll('.bottom button').forEach(x=>x.classList.toggle('active',x.dataset.go===id));scrollTo({top:0,behavior:'smooth'});if(id==='safety')renderZones()} document.querySelectorAll('[data-go]').forEach(x=>x.addEventListener('click',()=>go(x.dataset.go))); $('#refresh').addEventListener('click',locate);$('#live').addEventListener('click',locate);$('#location-button').addEventListener('click',locate);
+    $('#file').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{$('#upload-body').innerHTML=`<img src="${r.result}" alt="?낅줈?쒗븳 臾쇨퀬湲??ъ쭊"><p style="margin-top:7px">?ㅻⅨ ?ъ쭊???좏깮?섎젮硫??ш린瑜??꾨Ⅴ?몄슂.</p>`;$('#analysis').innerHTML='<div class="result"><h3>?맅 ?댁쥌 ?앸퀎 寃곌낵 <small style="font-size:10px;color:#718a91">?곕え</small></h3><dl><dt>異붿젙 ?댁쥌</dt><dd>媛먯꽦??/dd><dt>?앸퀎 ?좊ː??/dt><dd>蹂댄넻</dd><dt>沅뚯옣 理쒖냼 泥댁옣</dt><dd>25cm ?댁긽</dd><dt>湲덉뼱湲?/dt><dd>4??1??~ 4??30??/dd></dl><p class="disclaimer" style="margin-top:7px">?ъ쭊??媛곷룄? 鍮쏆뿉 ?곕씪 寃곌낵媛 ?щ씪吏????덉뒿?덈떎.</p></div>'};r.readAsDataURL(f)}); locate();
+        // Gemini Vision: 사진을 실제로 분석합니다. API 키는 사용자의 브라우저에만 저장됩니다.
+    const geminiKey = $('#gemini-key');
+    if (geminiKey) { geminiKey.value = localStorage.getItem('safesea_gemini_key') || ''; geminiKey.addEventListener('change', () => localStorage.setItem('safesea_gemini_key', geminiKey.value.trim())); }
+    $('#file').addEventListener('change', async e => {
+      const f=e.target.files[0], key=(geminiKey?.value||'').trim(); if(!f||!key) return;
+      $('#analysis').innerHTML='<div class="result"><h3>🐟 Gemini가 분석 중입니다</h3><p>사진을 안전하게 분석하고 있어요...</p></div>';
+      const reader=new FileReader(); reader.onload=async()=>{try{
+        const base64=reader.result.split(',')[1];
+        const res=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key='+encodeURIComponent(key),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:'한국어로 답하세요. 이 물고기 사진을 분석해 추정 어종, 신뢰도, 권장 최소 체장(cm), 금어기/주의사항을 간단한 JSON 없이 일반 텍스트로 알려주세요. 모르면 모른다고 하세요.'},{inline_data:{mime_type:f.type,data:base64}}]}]})});
+        const data=await res.json(); if(!res.ok) throw new Error(data.error?.message||'API 오류'); const text=data.candidates?.[0]?.content?.parts?.map(p=>p.text||'').join('')||'분석 결과가 없습니다.';
+        $('#analysis').innerHTML='<div class="result"><h3>🐟 Gemini 어종 분석</h3><p style="white-space:pre-wrap;text-align:left">'+text.replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]))+'</p><p class="disclaimer">AI 결과는 참고용입니다. 실제 규정은 공식 기관을 확인하세요.</p></div>';
+      }catch(err){$('#analysis').innerHTML='<div class="result"><h3>분석 실패</h3><p>'+String(err.message).replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]))+'</p></div>';}}; reader.readAsDataURL(f);
     });
-  } else {
-    currentAddress = null;
-  }
-}
-async function reverseGeocode(lat, lon){
-  try{
-    const res = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=ko`);
-    const data = await res.json();
-    const parts = [data.principalSubdivision, data.city || data.locality].filter(Boolean);
-    return parts.join(' ') || null;
-  }catch(_){ return null; }
-}
-
-/* ---------- 기상/해양 데이터 (Open-Meteo, 키 불필요) ---------- */
-async function fetchConditions(lat,lon){
-  const wUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,wind_speed_10m&timezone=Asia%2FSeoul`;
-  const mUrl = `https://marine-api.open-meteo.com/v1/marine?latitude=${lat}&longitude=${lon}&current=wave_height,sea_surface_temperature,ocean_current_velocity&timezone=Asia%2FSeoul`;
-  const [wRes, mRes] = await Promise.all([fetch(wUrl), fetch(mUrl)]);
-  const w = await wRes.json();
-  const m = await mRes.json();
-  return {
-    wind: w?.current?.wind_speed_10m ?? null,
-    seaTemp: m?.current?.sea_surface_temperature ?? w?.current?.temperature_2m ?? null,
-    wave: m?.current?.wave_height ?? null,
-    current: m?.current?.ocean_current_velocity ?? null
-  };
-}
-function scoreFrom(wave, wind, current){
-  let s = 100;
-  if(wave!=null){ if(wave>1.5)s-=40; else if(wave>1.0)s-=25; else if(wave>0.6)s-=12; else if(wave>0.3)s-=4; }
-  if(wind!=null){ if(wind>10)s-=35; else if(wind>7)s-=20; else if(wind>4)s-=8; }
-  if(current!=null){ if(current>0.5)s-=15; else if(current>0.3)s-=6; }
-  return Math.max(5, Math.min(99, Math.round(s)));
-}
-function tideLabel(current){
-  if(current==null) return {text:'정보 없음', cls:''};
-  if(current<0.25) return {text:'좋음', cls:'good'};
-  if(current<0.45) return {text:'보통', cls:'warn'};
-  return {text:'주의', cls:'bad'};
-}
-function crowdEstimate(){
-  const d = new Date();
-  const day = d.getDay(), hour = d.getHours();
-  const weekend = (day===0||day===6);
-  if(weekend && hour>=8 && hour<=17) return {text:'혼잡 예상', cls:'bad'};
-  if(hour>=5 && hour<=9) return {text:'보통', cls:'warn'};
-  return {text:'여유', cls:'good'};
-}
-
-async function loadWeatherAndRecommend(pos){
-  document.getElementById('wxLive').textContent = 'LOADING';
-  document.getElementById('wxLive').classList.add('stale');
-  try{
-    const c = await fetchConditions(pos.lat, pos.lon);
-    const score = scoreFrom(c.wave, c.wind, c.current);
-    document.getElementById('wxScore').innerHTML = `${score}<small>/100 출조지수</small>`;
-    document.getElementById('wxTemp').textContent = c.seaTemp!=null ? `${c.seaTemp.toFixed(1)}°` : '--°';
-    document.getElementById('wxWave').textContent = c.wave!=null ? `${c.wave.toFixed(1)}m` : '--m';
-    document.getElementById('wxWind').textContent = c.wind!=null ? `${c.wind.toFixed(1)}m/s` : '--m/s';
-    document.getElementById('wxLive').textContent = 'LIVE';
-    document.getElementById('wxLive').classList.remove('stale');
-
-    const near = nearestSpots(pos);
-    const top = near[0];
-    document.getElementById('wxPlace').textContent = `📍 ${top.name} 인근 · 현재 해상 상태`;
-    document.getElementById('recTitle').textContent = top.name;
-    document.getElementById('recDist').textContent = `현재 위치에서 ${top.dist.toFixed(1)}km · 차로 약 ${driveMinutes(top.dist)}분`;
-    document.getElementById('recFish').textContent = top.fish;
-    const tide = tideLabel(c.current);
-    const tideEl = document.getElementById('recTide');
-    tideEl.textContent = tide.text; tideEl.className = tide.cls;
-    const crowd = crowdEstimate();
-    const crowdEl = document.getElementById('recCrowd');
-    crowdEl.textContent = crowd.text; crowdEl.className = crowd.cls;
-    document.getElementById('recPinLabel').textContent = top.name;
-
-    updateHomeAlert(c, pos);
-  }catch(e){
-    document.getElementById('wxLive').textContent = '오류';
-    document.getElementById('wxNote').textContent = '기상 데이터를 불러오지 못했어요. 네트워크 연결을 확인해주세요.';
-  }
-}
-
-function updateHomeAlert(c, pos){
-  const card = document.getElementById('homeAlert');
-  const icon = document.getElementById('homeAlertIcon');
-  const title = document.getElementById('homeAlertTitle');
-  const desc = document.getElementById('homeAlertDesc');
-  const inZone = ZONES.find(z=>haversineKm(pos.lat,pos.lon,z.lat,z.lon) <= z.radius);
-  const danger = (c.wave!=null && c.wave>1.2) || (c.wind!=null && c.wind>10);
-  const caution = !danger && ((c.wave!=null && c.wave>0.6) || (c.wind!=null && c.wind>7));
-  card.className = 'alert-card ' + (inZone || danger ? 'danger' : (caution ? '' : 'safe'));
-  if(inZone){
-    icon.textContent='🚫'; title.textContent='제한구역 인근이에요'; desc.textContent=`${inZone.name} 반경 내 위치예요. 안전 탭에서 확인하세요.`;
-  } else if(danger){
-    icon.textContent='🌊'; title.textContent='기상 위험 알림'; desc.textContent='파고 또는 풍속이 위험 기준을 초과했어요. 출조를 미루는 것이 좋아요.';
-  } else if(caution){
-    icon.textContent='⚠️'; title.textContent='기상 주의 알림'; desc.textContent='파고·풍속이 다소 높아요. 출조 시 안전장비를 꼭 착용하세요.';
-  } else {
-    icon.textContent='✅'; title.textContent='현재 위험 알림이 없어요'; desc.textContent='주변 해역은 안전한 상태입니다.';
-  }
-}
-
-/* ---------- 포인트 화면 ---------- */
-function renderSpotsScreen(){
-  const pos = userPos || DEFAULT_POS;
-  const near = nearestSpots(pos);
-  document.getElementById('spotDetailCard').style.display = 'none';
-  const list = document.getElementById('spotsList');
-  list.innerHTML = near.map(s=>`
-    <div class="spot-list-item" style="cursor:pointer" onclick="selectSpot('${s.name.replace(/'/g,"\\'")}')">
-      <div><b>${s.name}</b><small>${s.fish}</small></div>
-      <div class="dist">${s.dist.toFixed(1)}km</div>
-    </div>`).join('');
-  const mapEl = document.getElementById('spotsMap');
-  mapEl.innerHTML = '<div class="pin me" style="left:50%;top:50%"><span>내 위치</span></div>' + near.slice(0,5).map((s,i)=>{
-    const dx = Math.max(-40,Math.min(40,(s.lon-pos.lon)*900));
-    const dy = Math.max(-40,Math.min(40,-(s.lat-pos.lat)*900));
-    return `<div class="pin" style="left:calc(50% + ${dx}px);top:calc(50% + ${dy}px)"><span>${s.name}</span></div>`;
-  }).join('');
-}
-
-let selectedSeason = null;
-
-function selectSpot(name){
-  const spot = SPOTS.find(s=>s.name===name);
-  if(!spot) return;
-  const pos = userPos || DEFAULT_POS;
-  const dist = haversineKm(pos.lat, pos.lon, spot.lat, spot.lon);
-  const card = document.getElementById('spotDetailCard');
-  card.style.display = 'block';
-  document.getElementById('sdName').textContent = spot.name;
-  document.getElementById('sdMeta').textContent = `현재 위치에서 ${dist.toFixed(1)}km · 차로 약 ${driveMinutes(dist)}분`;
-  card.dataset.spot = name;
-  selectedSeason = currentSeason();
-  renderSeasonTabs(spot);
-  renderSpotSpecies(spot);
-  card.scrollIntoView({behavior:'smooth', block:'nearest'});
-}
-
-function renderSeasonTabs(spot){
-  const tabs = document.getElementById('seasonTabs');
-  tabs.innerHTML = SEASONS.map(s=>`<button class="season-tab ${s===selectedSeason?'active':''}" onclick="pickSeason('${s}')">${seasonEmoji(s)} ${s}</button>`).join('');
-}
-function pickSeason(season){
-  selectedSeason = season;
-  const spot = SPOTS.find(s=>s.name===document.getElementById('spotDetailCard').dataset.spot);
-  if(!spot) return;
-  renderSeasonTabs(spot);
-  renderSpotSpecies(spot);
-}
-function renderSpotSpecies(spot){
-  const isNow = selectedSeason === currentSeason();
-  document.getElementById('sdSeasonBadge').textContent = `${seasonEmoji(selectedSeason)} ${selectedSeason}${isNow?' · 지금':''}`;
-  const list = spot.seasons[selectedSeason] || [];
-  document.getElementById('sdBody').innerHTML = `
-    <p style="font-size:12.5px;color:var(--muted);margin:0 0 8px">${selectedSeason}철 이 포인트에서 잘 잡히는 것으로 알려진 어종</p>
-    <div style="display:flex;flex-wrap:wrap;gap:7px">
-      ${list.length ? list.map(n=>`<span class="badge" style="background:#e5faf5;color:var(--teal)">${n}</span>`).join('') : '<span style="font-size:12px;color:var(--muted)">해당 계절 정보가 없어요</span>'}
-    </div>
-  `;
-}
-
-/* ---------- 안전 화면 ---------- */
-function renderSafetyScreen(){
-  const pos = userPos || DEFAULT_POS;
-  fetchConditions(pos.lat, pos.lon).then(c=>{
-    const icon = document.getElementById('safetyIcon');
-    const title = document.getElementById('safetyTitle');
-    const desc = document.getElementById('safetyDesc');
-    const alertCard = document.getElementById('safetyAlert');
-    const danger = (c.wave!=null && c.wave>1.2) || (c.wind!=null && c.wind>10);
-    const caution = !danger && ((c.wave!=null && c.wave>0.6) || (c.wind!=null && c.wind>7));
-    alertCard.className = 'alert-card ' + (danger ? 'danger' : (caution?'':'safe'));
-    if(danger){ icon.textContent='🚫'; title.textContent='출조를 권장하지 않아요'; desc.textContent='파고 또는 풍속이 위험 기준을 초과했습니다.'; }
-    else if(caution){ icon.textContent='⚠️'; title.textContent='주의가 필요해요'; desc.textContent='기상이 다소 거칠어요. 구명조끼 등 안전장비를 착용하세요.'; }
-    else { icon.textContent='✅'; title.textContent='현재 출조 가능'; desc.textContent='기상·파고·풍속이 모두 안전 기준입니다.'; }
-  });
-
-  const zoneList = document.getElementById('zoneList');
-  const zones = ZONES.map(z=>({...z, dist: haversineKm(pos.lat,pos.lon,z.lat,z.lon)})).sort((a,b)=>a.dist-b.dist);
-  zoneList.innerHTML = zones.map(z=>{
-    let pill = `<span class="pill ok">${z.dist.toFixed(1)}km</span>`;
-    if(z.dist<=z.radius) pill = `<span class="pill in">🚫 낚시금지구역</span>`;
-    else if(z.dist<=z.radius+0.5) pill = `<span class="pill near">근접</span>`;
-    return `<div class="zone-item"><div><b>${z.name}</b><small>${z.area} · ${z.gu}</small></div>${pill}</div>`;
-  }).join('');
-
-  const csList = document.getElementById('closedSeasonList');
-  csList.innerHTML = CLOSED_SEASONS.map(cs=>{
-    const hasSeason = !cs.period.includes('없음');
-    return `<div class="zone-item"><div><b>${cs.species}</b><small>금어기: ${cs.period}</small></div><span class="pill ${hasSeason?'near':'ok'}">${cs.min_length} 이하 방류</span></div>`;
-  }).join('');
-}
-
-/* ---------- AI 어종 식별 ---------- */
-document.getElementById('fileInput').addEventListener('change', async (e)=>{
-  const file = e.target.files[0];
-  if(!file) return;
-  const reader = new FileReader();
-  reader.onload = async ()=>{
-    const dataUrl = reader.result;
-    const base64 = dataUrl.split(',')[1];
-    const mediaType = file.type || 'image/jpeg';
-    document.getElementById('uploadInner').innerHTML = `<img src="${dataUrl}" alt="업로드한 사진"><p style="font-size:12px;color:var(--muted);margin:0">사진을 다시 누르면 교체할 수 있어요.</p>`;
-    const resultBox = document.getElementById('aiResultBox');
-    resultBox.innerHTML = `<div class="ai-result" style="text-align:center"><div class="spinner"></div>AI가 사진을 분석하고 있어요...</div>`;
-    try{
-      const todayStr = new Date().toLocaleDateString('ko-KR', {timeZone:'Asia/Seoul', year:'numeric', month:'long', day:'numeric'});
-      const encyclopediaText = FISH_ENCYCLOPEDIA.map(f=>`- ${f.name} (${f.family}): ${f.feature}${f.regulated ? ' [공식 규제 대상어종]' : ''}`).join('\n');
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: anthropicHeaders(),
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-6',
-          max_tokens: 1200,
-          messages: [{
-            role: 'user',
-            content: [
-              { type: 'image', source: { type: 'base64', media_type: mediaType, data: base64 } },
-              { type: 'text', text: `너는 한국 연안 낚시 어종 식별 전문가야. 아래는 SafeSea 앱이 보유한 어류 도감 목록(약 ${FISH_ENCYCLOPEDIA.length}종, 이름/과/식별 특징/공식 규제 대상 여부)이야. 이 도감을 최우선 참고자료로 사용해서 사진 속 어종을 가장 가깝게 일치하는 이름으로 식별해줘. 도감에 없는 종이면 너의 일반 지식으로 식별하되 그 사실을 note에 밝혀줘.\n\n[어류 도감]\n${encyclopediaText}\n\n오늘 날짜는 ${todayStr} (한국 기준)이야. 이 날짜 기준으로 방생(방류) 필요 여부를 판단해줘.\n\n중요 규칙:\n- 식별한 종이 도감에서 "[공식 규제 대상어종]"으로 표시되어 있으면, 국내 수산자원관리법상 실제로 알려진 최소체장·금어기 정보를 최대한 정확히 채워줘.\n- 규제 대상어종이 아니면 min_length_cm과 closed_season은 "해당 없음(비규제 어종)"으로 응답하고, 없는 수치를 지어내지 마.\n- 정확한 수치를 확신할 수 없으면 반드시 "정보 없음"이라고 응답해. 추측한 숫자를 확정적으로 말하지 마.\n\n반드시 아래 JSON 형식으로만, 다른 설명이나 코드블록 없이 응답해:\n{\n"species":"어종 한글명 (식별 불가 시 \\"식별 불가\\")",\n"confidence":"높음/보통/낮음",\n"in_encyclopedia":"도감 목록에 있는 종이면 \\"예\\", 아니면 \\"아니오\\"",\n"regulated_species":"공식 포획금지 체장·금어기 규제 대상 어종이면 \\"예\\", 아니면 \\"아니오\\", 불확실하면 \\"판단불가\\"",\n"min_length_cm":"국내 수산자원관리법 등 통상 알려진 최소 체장(cm) 숫자, 비규제 어종이면 \\"해당 없음(비규제 어종)\\", 규제 대상인데 정확한 수치를 모르면 \\"정보 없음\\"",\n"closed_season":"국내 통상 금어기 기간 텍스트, 비규제 어종이면 \\"해당 없음(비규제 어종)\\", 규제 대상인데 모르면 \\"정보 없음\\"",\n"closed_season_active":"오늘 날짜가 금어기에 해당하면 \\"예\\", 아니면 \\"아니오\\", 판단 불가면 \\"판단불가\\"",\n"protected_species":"국내 보호대상해양생물 등으로 지정되어 포획 자체가 금지된 종이면 \\"예\\", 아니면 \\"아니오\\"",\n"release_required":"금어기이거나 보호종이라 방생(방류)이 필요하다고 판단되면 \\"예\\", 필요 없으면 \\"아니오\\", 사진만으로 체장 판단이 안 되거나 불확실하면 \\"판단불가\\"",\n"release_reason":"방생 필요 여부에 대한 한 문장 근거",\n"note":"어종에 대한 한 문장 참고 설명 (도감에 없는 종이면 이 사실도 명시)"\n}` }
-            ]
-          }]
-        })
-      });
-      if(!res.ok){
-        let errMsg = `요청 실패 (HTTP ${res.status})`;
-        try{ const errData = await res.json(); if(errData?.error?.message) errMsg = errData.error.message; }catch(_){}
-        throw new Error(errMsg);
-      }
-      const data = await res.json();
-      const text = (data.content || []).map(b=>b.text || '').join('').trim();
-      const clean = text.replace(/```json|```/g,'').trim();
-      let parsed;
-      try{ parsed = JSON.parse(clean); }catch(_){ parsed = null; }
-      if(parsed && parsed.species){
-        renderFishResult(parsed);
-      } else {
-        resultBox.innerHTML = `<div class="ai-result">${text || '분석 결과를 가져오지 못했어요. 다시 시도해주세요.'}</div>`;
-      }
-    }catch(err){
-      if(!userApiKey){
-        resultBox.innerHTML = `<div class="ai-result">⚠️ AI 분석에 실패했어요. Claude.ai 미리보기 밖에서 이 앱을 쓰고 계시다면, 오른쪽 위 🔑 버튼을 눌러 본인의 Anthropic API 키를 입력해주세요.</div>`;
-      } else {
-        resultBox.innerHTML = `<div class="ai-result">분석 중 오류가 발생했어요: ${(err && err.message) || '네트워크 연결을 확인하고 다시 시도해주세요.'}</div>`;
-      }
-    }
-  };
-  reader.readAsDataURL(file);
-});
-
-function renderFishResult(p){
-  const resultBox = document.getElementById('aiResultBox');
-  const release = p.release_required || '판단불가';
-  const flagCls = release==='예' ? 'danger' : (release==='아니오' ? 'safe' : 'unknown');
-  const flagText = release==='예' ? '🚫 방생(방류) 대상으로 보여요' : (release==='아니오' ? '✅ 방생 대상 아님' : '❔ 사진만으로 판단이 어려워요');
-  const encTag = p.in_encyclopedia==='예' ? `<span class="badge" style="background:#e5faf5;color:var(--teal);margin-left:6px">도감 등재종</span>` : '';
-  resultBox.innerHTML = `<div class="ai-result">
-    <b>🐟 ${p.species} <span style="font-size:11px;color:var(--muted);font-weight:600">(식별 신뢰도 ${p.confidence||'-'})</span>${encTag}</b>
-    <div class="fish-fact-grid">
-      <div class="fish-fact"><small>공식 규제 대상 어종</small><b>${p.regulated_species||'판단불가'}</b></div>
-      <div class="fish-fact"><small>최소 체장</small><b>${p.min_length_cm||'정보 없음'}</b></div>
-      <div class="fish-fact"><small>금어기</small><b>${p.closed_season||'정보 없음'}</b></div>
-      <div class="fish-fact"><small>오늘 금어기 여부</small><b>${p.closed_season_active||'판단불가'}</b></div>
-      <div class="fish-fact"><small>보호대상종 여부</small><b>${p.protected_species||'-'}</b></div>
-    </div>
-    <span class="release-flag ${flagCls}">${flagText}</span>
-    <div style="margin-top:8px;color:var(--muted)">${p.release_reason||''}</div>
-    <div style="margin-top:4px;color:var(--muted)">${p.note||''}</div>
-  </div>`;
-  if(release==='예'){
-    openReleaseModal(p);
-  }
-}
-function openReleaseModal(p){
-  document.getElementById('modalTitle').textContent = `${p.species}, 지금은 방생해야 해요`;
-  document.getElementById('modalDesc').textContent = p.release_reason || '현재 금어기이거나 보호대상종으로 판단되어 방생이 필요해요.';
-  document.getElementById('modalIcon').textContent = p.protected_species==='예' ? '🛑' : '🚫';
-  document.getElementById('modalFacts').innerHTML = `
-    <div>최소 체장 기준: <b>${p.min_length_cm||'정보 없음'}</b></div>
-    <div>금어기: <b>${p.closed_season||'정보 없음'}</b></div>
-    <div>보호대상종 여부: <b>${p.protected_species||'-'}</b></div>`;
-  document.getElementById('releaseModal').classList.add('show');
-}
-function closeReleaseModal(){
-  document.getElementById('releaseModal').classList.remove('show');
-}
-
-document.getElementById('encCount').textContent = FISH_ENCYCLOPEDIA.length;
-document.getElementById('fishNameList').innerHTML = FISH_ENCYCLOPEDIA.map(f=>`<option value="${f.name}">`).join('');
-updateApiKeyBtnState();
-
-/* ---------- 잡은 물고기 기록 (마이) ---------- */
-let CATCH_LOG = [];
-async function loadCatchLog(){
-  try{
-    const res = await window.storage.get('catch_log');
-    if(res && res.value) CATCH_LOG = JSON.parse(res.value);
-  }catch(e){ CATCH_LOG = []; }
-  renderCatchList();
-}
-async function saveCatchLog(){
-  try{ await window.storage.set('catch_log', JSON.stringify(CATCH_LOG)); }catch(e){ /* 저장 실패 시 이번 세션에서만 유지 */ }
-}
-function addCatch(){
-  const speciesInput = document.getElementById('catchSpecies');
-  const sizeInput = document.getElementById('catchSize');
-  const species = speciesInput.value.trim();
-  const size = parseFloat(sizeInput.value);
-  const warnEl = document.getElementById('catchWarning');
-  if(!species || !size || size<=0){
-    warnEl.textContent = '어종과 크기를 모두 입력해주세요.';
-    warnEl.style.display = 'block';
-    return;
-  }
-  warnEl.style.display = 'none';
-  CATCH_LOG.unshift({species, size, date: new Date().toISOString()});
-  speciesInput.value = ''; sizeInput.value = '';
-  saveCatchLog();
-  renderCatchList();
-}
-function deleteCatch(idx){
-  CATCH_LOG.splice(idx,1);
-  saveCatchLog();
-  renderCatchList();
-}
-function findSizeRule(species){
-  return CLOSED_SEASONS.find(cs=>cs.species===species || cs.species.startsWith(species) || species.startsWith(cs.species.replace(/\(.+\)/,'')));
-}
-function renderCatchList(){
-  const badge = document.getElementById('catchCountBadge');
-  const list = document.getElementById('catchList');
-  if(!badge || !list) return;
-  badge.textContent = `${CATCH_LOG.length}마리`;
-  if(!CATCH_LOG.length){
-    list.innerHTML = `<p style="font-size:12px;color:var(--muted);text-align:center;padding:16px 0">아직 기록이 없어요. 위에서 어종과 크기를 입력해 추가해보세요.</p>`;
-    return;
-  }
-  list.innerHTML = CATCH_LOG.map((c,i)=>{
-    const rule = findSizeRule(c.species);
-    let flag = '';
-    if(rule){
-      const minLen = parseFloat(rule.min_length);
-      flag = c.size <= minLen
-        ? `<span class="pill in" style="margin-left:6px">🚫 방류 대상</span>`
-        : `<span class="pill ok" style="margin-left:6px">✓ 크기 충족</span>`;
-    }
-    const d = new Date(c.date);
-    const dateStr = `${d.getMonth()+1}/${d.getDate()}`;
-    return `<div class="spot-list-item"><div><b>${c.species}${flag}</b><small>${c.size}cm · ${dateStr}</small></div><button onclick="deleteCatch(${i})" title="삭제" style="border:0;background:none;color:var(--muted);font-size:15px;cursor:pointer;padding:6px">✕</button></div>`;
-  }).join('');
-}
-loadCatchLog();
-
-/* ---------- 초기 실행 ---------- */
-document.getElementById('refreshBtn').addEventListener('click', ()=>requestLocation(true));
-document.getElementById('wxLive').addEventListener('click', ()=>requestLocation(true));
-requestLocation(false);
-</script>
-</body></html>
+    if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('sw.js'));
+  </script>
+</body>
+</html>
